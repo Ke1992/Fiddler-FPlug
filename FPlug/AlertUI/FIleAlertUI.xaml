@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="FPlug.AlertUI.FIleAlertUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FPlug.AlertUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="500" Width="500" Height="310">
+    
+    <!--#region 样式、模板资源 -->
+    <UserControl.Resources>
+        <ResourceDictionary Source="../GlobalStyle.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+    <!--#endregion-->
+
+    <StackPanel Background="White">
+        <Label Content="请填写相关配置" Style="{StaticResource alert_style_title}"></Label>
+        <StackPanel Style="{StaticResource alert_style_wrap_textarea}">
+            <Label Style="{StaticResource alert_style_name}">URL</Label>
+            <TextBox x:Name="url" KeyDown="inputKeyDown" Style="{StaticResource alert_style_textarea}"/>
+        </StackPanel>
+        <StackPanel Style="{StaticResource alert_style_wrap}">
+            <Label Style="{StaticResource alert_style_name}">文件路径</Label>
+            <TextBox x:Name="path" KeyDown="inputKeyDown" Style="{StaticResource alert_style_input}"/>
+        </StackPanel>
+        <Label MouseLeftButtonDown="addFileRule" Style="{StaticResource alert_style_sure_btn}">确定</Label>
+    </StackPanel>
+</UserControl>

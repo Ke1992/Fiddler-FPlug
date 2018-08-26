@@ -1,0 +1,303 @@
+﻿<UserControl x:Class="FPlug.Container"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FPlug"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+
+    <!--#region 样式、模板资源 -->
+    <UserControl.Resources>
+        <ResourceDictionary Source="GlobalStyle.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+    <!--#endregion-->
+
+    <Grid x:Name="main" Background="#FFF0F3F6">
+        <!--#region 列属性定义-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="84"/>
+        </Grid.ColumnDefinitions>
+        <!--#endregion-->
+
+        <!--#region 内容区域 -->
+        <!-- HOST区域 -->
+        <Grid Grid.Column="0" Margin="30,0" Visibility="{Binding Path=HostWrap}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="100*" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0">
+                <Label Style="{StaticResource main_style_title}">HOST 映射</Label>
+                <Label MouseLeftButtonDown="showExplainAlertUI" Tag="host" Template="{StaticResource main_guide}" HorizontalAlignment="Left"></Label>
+                <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Style="{StaticResource main_style_operation}" MouseLeftButtonDown="addItem">新增</Label>
+                    <Label Style="{StaticResource main_style_operation_disable}" MouseLeftButtonDown="disabledAllItem">全禁</Label>
+                </WrapPanel>
+            </DockPanel>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="host" Margin="0,0,0,20"></StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <!-- File区域 -->
+        <Grid Grid.Column="0" Margin="30,0" Visibility="{Binding Path=FileWrap}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="100*" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0">
+                <Label Style="{StaticResource main_style_title}">FILE 映射</Label>
+                <Label MouseLeftButtonDown="showExplainAlertUI" Tag="file" Template="{StaticResource main_guide}" HorizontalAlignment="Left"></Label>
+                <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Style="{StaticResource main_style_operation}" MouseLeftButtonDown="addItem">新增</Label>
+                    <Label Style="{StaticResource main_style_operation_disable}" MouseLeftButtonDown="disabledAllItem">全禁</Label>
+                </WrapPanel>
+            </DockPanel>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="file" Margin="0,0,0,20"></StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <!-- HTTPS区域 -->
+        <Grid Grid.Column="0" Margin="30,0" Visibility="{Binding Path=HttpsWrap}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="100*" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0">
+                <Label Style="{StaticResource main_style_title}">HTTPS 转 HTTP</Label>
+                <Label MouseLeftButtonDown="showExplainAlertUI" Tag="https" Template="{StaticResource main_guide}" HorizontalAlignment="Left"></Label>
+                <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Style="{StaticResource main_style_operation}" MouseLeftButtonDown="addItem">新增</Label>
+                    <Label Style="{StaticResource main_style_operation_disable}" MouseLeftButtonDown="disabledAllItem">全禁</Label>
+                </WrapPanel>
+            </DockPanel>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="https" Margin="0,0,0,20"></StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <!-- TOOL区域 -->
+        <Grid Grid.Column="0" Margin="30,0" Visibility="{Binding Path=ToolsWrap}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="100*" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0">
+                <Label Style="{StaticResource main_style_title}">工具库</Label>
+                <Label MouseLeftButtonDown="showExplainAlertUI" Tag="tools" Template="{StaticResource main_guide}" HorizontalAlignment="Left"></Label>
+            </DockPanel>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <Label HorizontalContentAlignment="Center" Foreground="#FF808080" Padding="5,0,5,15">当前版本 v1.0.0</Label>
+                    <Label BorderBrush="#FFE0E0E0" BorderThickness="0,1,0,0"></Label>
+                    <!-- serverip、cache、console -->
+                    <Grid Margin="0,10,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="33*"/>
+                            <ColumnDefinition Width="33*"/>
+                            <ColumnDefinition Width="33*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel x:Name="tool_serverip" Grid.Column="0" VerticalAlignment="Top">
+                            <Label Template="{StaticResource tool_ellipse}" HorizontalAlignment="Center"></Label>
+                            <Canvas Width="20" Height="20" Margin="0,-44,0,0">
+                                <Path Fill="{Binding Path=IconColor}" Data="M19.38 17.019l-4.737-4.029c-0.49-0.441-1.013-0.643-1.437-0.624 1.118-1.31 1.794-3.009 1.794-4.867 0-4.142-3.358-7.5-7.5-7.5s-7.5 3.358-7.5 7.5 3.358 7.5 7.5 7.5c1.857 0 3.557-0.676 4.867-1.794-0.020 0.423 0.183 0.947 0.624 1.437l4.029 4.737c0.69 0.767 1.817 0.831 2.504 0.144s0.623-1.814-0.144-2.504zM7.5 12.5c-2.761 0-5-2.239-5-5s2.239-5 5-5 5 2.239 5 5-2.239 5-5 5z" />
+                            </Canvas>
+                            <Label MouseLeftButtonDown="changeToolEnable" Tag="serverip" Style="{StaticResource tool_style_btn_label}"></Label>
+                            <Label Style="{StaticResource tool_style_title}">
+                                <TextBlock TextTrimming="CharacterEllipsis" Text="显示serverip" ToolTip="显示serverip"></TextBlock>
+                            </Label>
+                        </StackPanel>
+                        <StackPanel x:Name="tool_cache" Grid.Column="1" VerticalAlignment="Top">
+                            <Label Template="{StaticResource tool_ellipse}" HorizontalAlignment="Center"></Label>
+                            <Canvas Width="20" Height="20" Margin="0,-44,0,0">
+                                <Path Fill="{Binding Path=IconColor}" Data="M10 0c-5.444 0-9.872 4.351-9.997 9.765 0.116-4.724 3.708-8.515 8.122-8.515 4.487 0 8.125 3.918 8.125 8.75 0 1.036 0.839 1.875 1.875 1.875s1.875-0.839 1.875-1.875c0-5.523-4.477-10-10-10zM10 20c5.444 0 9.872-4.351 9.997-9.765-0.116 4.724-3.708 8.515-8.122 8.515-4.487 0-8.125-3.918-8.125-8.75 0-1.036-0.839-1.875-1.875-1.875s-1.875 0.839-1.875 1.875c0 5.523 4.477 10 10 10z" />
+                            </Canvas>
+                            <Label MouseLeftButtonDown="changeToolEnable" Tag="cache" Style="{StaticResource tool_style_btn_label}"></Label>
+                            <Label Style="{StaticResource tool_style_title}">
+                                <TextBlock TextTrimming="CharacterEllipsis" Text="禁止缓存" ToolTip="禁止缓存"></TextBlock>
+                            </Label>
+                        </StackPanel>
+                        <StackPanel x:Name="tool_console" Grid.Column="2" VerticalAlignment="Top">
+                            <Label Template="{StaticResource tool_ellipse}" HorizontalAlignment="Center"></Label>
+                            <Canvas Width="20" Height="20" Margin="0,-44,0,0">
+                                <Path Fill="{Binding Path=IconColor}" Data="M20 11.25v-1.25h-3.775c-0.114-1.42-0.621-2.715-1.4-3.755h3.163l1.368-5.473-1.213-0.303-1.132 4.527h-3.412c-0.017-0.014-0.035-0.027-0.053-0.040 0.131-0.381 0.202-0.789 0.202-1.215 0-2.066-1.679-3.74-3.75-3.74s-3.75 1.675-3.75 3.74c0 0.425 0.071 0.834 0.202 1.215-0.018 0.013-0.035 0.027-0.053 0.040h-3.412l-1.132-4.527-1.213 0.303 1.368 5.473h3.163c-0.779 1.039-1.285 2.335-1.4 3.755h-3.775v1.25h3.777c0.074 0.892 0.303 1.735 0.657 2.495h-2.422l-1.368 5.473 1.213 0.303 1.132-4.527h2.194c1.146 1.524 2.879 2.495 4.818 2.495s3.671-0.971 4.818-2.495h2.194l1.132 4.527 1.213-0.303-1.368-5.473h-2.422c0.354-0.761 0.583-1.603 0.657-2.495h3.777z" />
+                            </Canvas>
+                            <Label MouseLeftButtonDown="changeToolEnable" Tag="console" Style="{StaticResource tool_style_btn_label}"></Label>
+                            <Label Style="{StaticResource tool_style_title}">
+                                <TextBlock TextTrimming="CharacterEllipsis" Text="console日志" ToolTip="console日志"></TextBlock>
+                            </Label>
+                        </StackPanel>
+                    </Grid>
+                    <!-- UA模拟 -->
+                    <Grid x:Name="tool_useragent" Margin="10,10,10,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="44"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="100*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Template="{StaticResource tool_ellipse}" VerticalAlignment="Center"></Label>
+                        <Canvas Grid.Column="0" Width="20" Height="20">
+                            <Path Fill="{Binding Path=IconColor}" Data="M15 13.75v-7.5h-1.25v7.5h-3.125l3.75 3.75 3.75-3.75z" />
+                            <Path Fill="{Binding Path=IconColor}" Data="M6.25 5v3.75h-3.75v-3.75h3.75zM7.5 3.75h-6.25v6.25h6.25v-6.25z" />
+                            <Path Fill="{Binding Path=IconColor}" Data="M1.25 12.5h1.875v1.25h-1.875v-1.25z" />
+                            <Path Fill="{Binding Path=IconColor}" Data="M3.75 12.5h1.875v1.25h-1.875v-1.25z" />
+                            <Path Fill="{Binding Path=IconColor}" Data="M6.25 12.5h1.25v1.875h-1.25v-1.875z" />
+                            <Path Fill="{Binding Path=IconColor}" Data="M1.25 16.875h1.25v1.875h-1.25v-1.875z" />
+                            <Path Fill="{Binding Path=IconColor}" Data="M3.125 17.5h1.875v1.25h-1.875v-1.25z" />
+                            <Path Fill="{Binding Path=IconColor}" Data="M5.625 17.5h1.875v1.25h-1.875v-1.25z" />
+                            <Path Fill="{Binding Path=IconColor}" Data="M1.25 14.375h1.25v1.875h-1.25v-1.875z" />
+                            <Path Fill="{Binding Path=IconColor}" Data="M6.25 15h1.25v1.875h-1.25v-1.875z" />
+                        </Canvas>
+                        <Label Grid.Column="0" MouseLeftButtonDown="changeToolEnable" Tag="useragent" Style="{StaticResource tool_style_btn_label}" Margin="0"></Label>
+                        <Label Grid.Column="1" Style="{StaticResource tool_style_title_long}">UA模拟</Label>
+                        <TextBox x:Name="tool_useragent_content" KeyUp="useragentInput" Grid.Column="2" Style="{StaticResource tool_style_input}"></TextBox>
+                    </Grid>
+                    <!-- JS注入 -->
+                    <Grid x:Name="tool_invade" Margin="10,5,10,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="44"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="65"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Template="{StaticResource tool_ellipse}" VerticalAlignment="Center"></Label>
+                        <Canvas Grid.Column="0" Width="25" Height="20">
+                            <Path Fill="{Binding Path=IconColor}" Data="M16.25 14.375l1.875 1.875 6.25-6.25-6.25-6.25-1.875 1.875 4.375 4.375z" />
+                            <Path Fill="{Binding Path=IconColor}" Data="M8.75 5.625l-1.875-1.875-6.25 6.25 6.25 6.25 1.875-1.875-4.375-4.375z" />
+                            <Path Fill="{Binding Path=IconColor}" Data="M13.697 2.94l1.357 0.37-3.75 13.751-1.357-0.37 3.75-13.751z" />
+                        </Canvas>
+                        <Label Grid.Column="0" MouseLeftButtonDown="changeToolEnable" Tag="invade" Style="{StaticResource tool_style_btn_label}" Margin="0"></Label>
+                        <Label Grid.Column="1" Style="{StaticResource tool_style_title_long}">JS注入</Label>
+                        <TextBox x:Name="tool_invade_content" Grid.Column="2" Style="{StaticResource tool_style_textarea}"></TextBox>
+                        <Label MouseLeftButtonDown="sendJavaScriptToWeb" Grid.Column="3" Style="{StaticResource tool_style_btn_send}">发送</Label>
+                    </Grid>
+                    <!-- 颜色说明 -->
+                    <Label Height="40" VerticalContentAlignment="Center" Foreground="#FF808080" FontWeight="Bold" FontSize="14" BorderBrush="#FFE0E0E0" BorderThickness="0,1,0,0" HorizontalContentAlignment="Center">session面板说明</Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="33*"/>
+                            <ColumnDefinition Width="33*"/>
+                            <ColumnDefinition Width="33*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <WrapPanel Grid.Column="0" HorizontalAlignment="Center">
+                            <Rectangle Fill="#FF9966CC" Width="20" Height="20"/>
+                            <Label Style="{StaticResource tool_style_tips}">HOST映射</Label>
+                        </WrapPanel>
+                        <WrapPanel Grid.Column="1" HorizontalAlignment="Center">
+                            <Rectangle Fill="#FFFF6666" Width="20" Height="20"/>
+                            <Label Style="{StaticResource tool_style_tips}">文件映射</Label>
+                        </WrapPanel>
+                        <WrapPanel Grid.Column="2" HorizontalAlignment="Center">
+                            <Rectangle Fill="#FFFF9933" Width="20" Height="20"/>
+                            <Label Style="{StaticResource tool_style_tips}">HTTPS转换</Label>
+                        </WrapPanel>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <!-- 日志区域 -->
+        <Grid Grid.Column="0" Margin="30,0" Tag="{Binding Path=ConsoleWrap}" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="100*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0">
+                <Label Style="{StaticResource main_style_title}">console日志</Label>
+                <Label MouseLeftButtonDown="showExplainAlertUI" Tag="console" Template="{StaticResource main_guide}" HorizontalAlignment="Left"></Label>
+            </DockPanel>
+            <!-- 日志模块 -->
+            <ScrollViewer Grid.Row="1" x:Name="tool_console_scroll" VerticalScrollBarVisibility="Auto">
+                <RichTextBox IsReadOnly="True" Background="White" FontSize="14" Padding="1,16,1,1" BorderBrush="#FFABADB3">
+                    <FlowDocument x:Name="tool_console_content"></FlowDocument>
+                </RichTextBox>
+            </ScrollViewer>
+            <!-- 按钮模块 -->
+            <WrapPanel Grid.Row="2" Margin="0,20">
+                <Label MouseLeftButtonDown="clearAllLog" Style="{DynamicResource tool_style_btn_clear}" Content="清空日志"></Label>
+                <Label VerticalContentAlignment="Center" FontSize="14" Foreground="#FF666666">筛选：</Label>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Label MouseLeftButtonDown="changeConsoleType" Tag="all" Template="{StaticResource tool_console_check_yes}" Visibility="{Binding Path=ConsoleAllCheckShow}"></Label>
+                    <Ellipse MouseLeftButtonDown="changeConsoleType" Tag="all" Style="{StaticResource tool_style_console_check_no}" Visibility="{Binding Path=ConsoleAllCheckHide}"></Ellipse>
+                    <Label Style="{StaticResource tool_style_console_text}">all</Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <Label MouseLeftButtonDown="changeConsoleType" Tag="log" Template="{StaticResource tool_console_check_yes}" Visibility="{Binding Path=ConsoleLogCheckShow}"></Label>
+                    <Ellipse MouseLeftButtonDown="changeConsoleType" Tag="log" Style="{StaticResource tool_style_console_check_no}" Visibility="{Binding Path=ConsoleLogCheckHide}"></Ellipse>
+                    <Label Style="{StaticResource tool_style_console_text}">log</Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <Label MouseLeftButtonDown="changeConsoleType" Tag="warn" Template="{StaticResource tool_console_check_yes}" Visibility="{Binding Path=ConsoleWarnCheckShow}"></Label>
+                    <Ellipse MouseLeftButtonDown="changeConsoleType" Tag="warn" Style="{StaticResource tool_style_console_check_no}" Visibility="{Binding Path=ConsoleWarnCheckHide}"></Ellipse>
+                    <Label Style="{StaticResource tool_style_console_text}">warn</Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <Label MouseLeftButtonDown="changeConsoleType" Tag="error" Template="{StaticResource tool_console_check_yes}" Visibility="{Binding Path=ConsoleErrorCheckShow}"></Label>
+                    <Ellipse MouseLeftButtonDown="changeConsoleType" Tag="error" Style="{StaticResource tool_style_console_check_no}" Visibility="{Binding Path=ConsoleErrorCheckHide}"></Ellipse>
+                    <Label Style="{StaticResource tool_style_console_text}">error</Label>
+                </StackPanel>
+            </WrapPanel>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region 侧边导航栏 -->
+        <StackPanel Grid.Column="1" Background="#FF4F5E6E" >
+            <Image MouseLeftButtonDown="changeFPlugEnable" Source="{Binding Path=IconSource}" Width="50" Height="50" Margin="0,20,0,0" Cursor="Hand"></Image>
+            <Label Template="{StaticResource nav_ellipsis}"></Label>
+            <!-- HOST映射 -->
+            <StackPanel MouseLeftButtonDown="changeTabByTag" Tag="host" Style="{StaticResource nav_style_bg}">
+                <Canvas Width="32" Height="32">
+                    <Path Fill="{Binding Path=HostTabColor}" Data="M25.333 18.8v-8.133c0-2.267-1.733-4-4-4h-4c-0.8 0-1.333 0.533-1.333 1.333s0.533 1.333 1.333 1.333h4c0.8 0 1.333 0.533 1.333 1.333v8.133c-2.267 0.533-4 2.667-4 5.2 0 2.933 2.4 5.333 5.333 5.333s5.333-2.4 5.333-5.333c0-2.533-1.733-4.533-4-5.2zM24 26.667c-1.467 0-2.667-1.2-2.667-2.667s1.2-2.667 2.667-2.667 2.667 1.2 2.667 2.667-1.2 2.667-2.667 2.667z" />
+                    <Path Fill="{Binding Path=HostTabColor}" Data="M8 2.667c-2.933 0-5.333 2.4-5.333 5.333 0 2.533 1.733 4.533 4 5.2v14.8c0 0.8 0.533 1.333 1.333 1.333s1.333-0.533 1.333-1.333v-14.8c2.267-0.533 4-2.667 4-5.2 0-2.933-2.4-5.333-5.333-5.333zM8 10.667c-1.467 0-2.667-1.2-2.667-2.667s1.2-2.667 2.667-2.667 2.667 1.2 2.667 2.667-1.2 2.667-2.667 2.667z" />
+                </Canvas>
+                <Label Style="{StaticResource nav_style_title}" Foreground="{Binding Path=HostTabColor}">HOST</Label>
+            </StackPanel>
+            <Label Template="{StaticResource nav_ellipsis}"></Label>
+            <!-- 文件映射 -->
+            <StackPanel MouseLeftButtonDown="changeTabByTag" Tag="file" Style="{StaticResource nav_style_bg}">
+                <Canvas Width="32" Height="32">
+                    <Path Fill="{Binding Path=FileTabColor}" Data="M26.667 6.667h-11.333l-2.267-3.467c-0.267-0.267-0.667-0.533-1.067-0.533h-6.667c-2.267 0-4 1.733-4 4v18.667c0 2.267 1.733 4 4 4h21.333c2.267 0 4-1.733 4-4v-14.667c0-2.267-1.733-4-4-4zM28 25.333c0 0.8-0.533 1.333-1.333 1.333h-21.333c-0.8 0-1.333-0.533-1.333-1.333v-18.667c0-0.8 0.533-1.333 1.333-1.333h6l2.267 3.467c0.267 0.267 0.667 0.533 1.067 0.533h12c0.8 0 1.333 0.533 1.333 1.333v14.667z" />
+                </Canvas>
+                <Label Style="{StaticResource nav_style_title}" Foreground="{Binding Path=FileTabColor}">文件</Label>
+            </StackPanel>
+            <Label Template="{StaticResource nav_ellipsis}"></Label>
+            <!-- HTTPS转换 -->
+            <StackPanel MouseLeftButtonDown="changeTabByTag" Tag="https" Style="{StaticResource nav_style_bg}">
+                <Canvas Width="32" Height="32">
+                    <Path Fill="{Binding Path=HttpsTabColor}" Data="M28.133 3.733c-3.067-3.067-8-3.067-11.067 0l-2.4 2.267c-0.533 0.533-0.533 1.333 0 1.867s1.333 0.533 1.867 0l2.267-2.267c2.133-2 5.333-2 7.467 0s2.133 5.467 0.133 7.467l-4 4c-0.133 0.133-0.4 0.4-0.533 0.533-2.4 1.733-5.733 1.333-7.467-1.067-0.4-0.533-1.333-0.667-1.867-0.267s-0.667 1.333-0.267 1.867c1.6 2.133 4 3.2 6.4 3.2 1.6 0 3.333-0.533 4.8-1.6 0.267-0.267 0.533-0.533 0.933-0.8l4-4c3.067-3.067 2.933-8.267-0.267-11.2z" />
+                    <Path Fill="{Binding Path=HttpsTabColor}" Data="M15.333 24.133l-2.267 2.267c-2.133 2-5.333 2-7.467 0s-2.133-5.467-0.133-7.467l4-4c0.133-0.133 0.4-0.4 0.533-0.533 1.2-0.8 2.533-1.2 4-1.067 1.467 0.267 2.667 0.933 3.467 2.133 0.4 0.533 1.333 0.667 1.867 0.267s0.667-1.333 0.267-1.867c-1.333-1.733-3.2-2.8-5.2-3.067-2-0.4-4.133 0.133-5.867 1.467-0.267 0.267-0.533 0.533-0.8 0.8l-4 4c-3.067 3.2-2.933 8.267 0.133 11.333 1.6 1.467 3.6 2.267 5.6 2.267s4-0.8 5.6-2.267l2.267-2.267c0.533-0.533 0.533-1.333 0-1.867s-1.467-0.667-2-0.133z" />
+                </Canvas>
+                <Label Style="{StaticResource nav_style_title}" Foreground="{Binding Path=HttpsTabColor}">HTTPS</Label>
+            </StackPanel>
+            <Label Template="{StaticResource nav_ellipsis}"></Label>
+            <!-- 工具库 -->
+            <StackPanel MouseLeftButtonDown="changeTabByTag" Tag="tools" Style="{StaticResource nav_style_bg}">
+                <Canvas Width="32" Height="32">
+                    <Path Fill="{Binding Path=ToolsTabColor}" Data="M13.333 2.667h-9.333c-0.8 0-1.333 0.533-1.333 1.333v9.333c0 0.8 0.533 1.333 1.333 1.333h9.333c0.8 0 1.333-0.533 1.333-1.333v-9.333c0-0.8-0.533-1.333-1.333-1.333zM12 12h-6.667v-6.667h6.667v6.667z" />
+                    <Path Fill="{Binding Path=ToolsTabColor}" Data="M28 2.667h-9.333c-0.8 0-1.333 0.533-1.333 1.333v9.333c0 0.8 0.533 1.333 1.333 1.333h9.333c0.8 0 1.333-0.533 1.333-1.333v-9.333c0-0.8-0.533-1.333-1.333-1.333zM26.667 12h-6.667v-6.667h6.667v6.667z" />
+                    <Path Fill="{Binding Path=ToolsTabColor}" Data="M28 17.333h-9.333c-0.8 0-1.333 0.533-1.333 1.333v9.333c0 0.8 0.533 1.333 1.333 1.333h9.333c0.8 0 1.333-0.533 1.333-1.333v-9.333c0-0.8-0.533-1.333-1.333-1.333zM26.667 26.667h-6.667v-6.667h6.667v6.667z" />
+                    <Path Fill="{Binding Path=ToolsTabColor}" Data="M13.333 17.333h-9.333c-0.8 0-1.333 0.533-1.333 1.333v9.333c0 0.8 0.533 1.333 1.333 1.333h9.333c0.8 0 1.333-0.533 1.333-1.333v-9.333c0-0.8-0.533-1.333-1.333-1.333zM12 26.667h-6.667v-6.667h6.667v6.667z" />
+                </Canvas>
+                <Label Style="{StaticResource nav_style_title}" Foreground="{Binding Path=ToolsTabColor}">工具库</Label>
+            </StackPanel>
+            <Label Template="{StaticResource nav_ellipsis}" Visibility="{Binding Path=ConsoleTab}"></Label>
+            <!-- console -->
+            <StackPanel MouseLeftButtonDown="changeTabByTag" Tag="console" Style="{StaticResource nav_style_bg}" Visibility="{Binding Path=ConsoleTab}">
+                <Canvas Width="32" Height="32">
+                    <Path Fill="{Binding Path=ConsoleTabColor}" Data="M10.667 9.333h17.333c0.8 0 1.333-0.533 1.333-1.333s-0.533-1.333-1.333-1.333h-17.333c-0.8 0-1.333 0.533-1.333 1.333s0.533 1.333 1.333 1.333z" />
+                    <Path Fill="{Binding Path=ConsoleTabColor}" Data="M28 14.667h-17.333c-0.8 0-1.333 0.533-1.333 1.333s0.533 1.333 1.333 1.333h17.333c0.8 0 1.333-0.533 1.333-1.333s-0.533-1.333-1.333-1.333z" />
+                    <Path Fill="{Binding Path=ConsoleTabColor}" Data="M28 22.667h-17.333c-0.8 0-1.333 0.533-1.333 1.333s0.533 1.333 1.333 1.333h17.333c0.8 0 1.333-0.533 1.333-1.333s-0.533-1.333-1.333-1.333z" />
+                    <Path Fill="{Binding Path=ConsoleTabColor}" Data="M3.067 7.067c-0.267 0.267-0.4 0.533-0.4 0.933s0.133 0.667 0.4 0.933c0.267 0.267 0.533 0.4 0.933 0.4s0.667-0.133 0.933-0.4c0.267-0.267 0.4-0.533 0.4-0.933s-0.133-0.667-0.4-0.933c-0.533-0.533-1.333-0.533-1.867 0z" />
+                    <Path Fill="{Binding Path=ConsoleTabColor}" Data="M3.067 15.067c-0.267 0.267-0.4 0.533-0.4 0.933s0.133 0.667 0.4 0.933c0.267 0.267 0.533 0.4 0.933 0.4s0.667-0.133 0.933-0.4c0.267-0.267 0.4-0.533 0.4-0.933s-0.133-0.667-0.4-0.933c-0.533-0.533-1.333-0.533-1.867 0z" />
+                    <Path Fill="{Binding Path=ConsoleTabColor}" Data="M3.067 23.067c-0.267 0.267-0.4 0.533-0.4 0.933s0.133 0.667 0.4 0.933c0.267 0.267 0.533 0.4 0.933 0.4s0.667-0.133 0.933-0.4c0.267-0.267 0.4-0.533 0.4-0.933s-0.133-0.667-0.4-0.933c-0.533-0.533-1.333-0.533-1.867 0z" />
+                </Canvas>
+                <Label Style="{StaticResource nav_style_title}" Foreground="{Binding Path=ConsoleTabColor}">日志</Label>
+            </StackPanel>
+        </StackPanel>
+        <!--#endregion-->
+    </Grid>
+</UserControl>

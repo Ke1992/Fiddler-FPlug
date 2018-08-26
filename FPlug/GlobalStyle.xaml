@@ -1,0 +1,594 @@
+﻿<ResourceDictionary x:Class="FPlug.GlobalEvent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FPlug"
+             mc:Ignorable="d" >
+
+    <!--#region 右键菜单模板 -->
+    <!-- Item菜单 -->
+    <ContextMenu x:Key="menu_item">
+        <MenuItem Header="新增规则" Click="handleItemMenuClick" Tag="add">
+            <MenuItem.Icon>
+                <Image Source="Resources/add.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator></Separator>
+        <MenuItem Header="修改" Click="handleItemMenuClick" Tag="modify">
+            <MenuItem.Icon>
+                <Image Source="Resources/modify.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="删除" Click="handleItemMenuClick" Tag="delete">
+            <MenuItem.Icon>
+                <Image Source="Resources/delete.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator></Separator>
+        <MenuItem Header="上移" Click="handleItemMenuClick" Tag="up">
+            <MenuItem.Icon>
+                <Image Source="Resources/up.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="下移" Click="handleItemMenuClick" Tag="down">
+            <MenuItem.Icon>
+                <Image Source="Resources/down.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
+    <!-- Rule菜单 -->
+    <ContextMenu x:Key="menu_rule">
+        <MenuItem Header="修改" Click="handleRuleMenuClick" Tag="modify">
+            <MenuItem.Icon>
+                <Image Source="Resources/modify.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="删除" Click="handleRuleMenuClick" Tag="delete">
+            <MenuItem.Icon>
+                <Image Source="Resources/delete.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator></Separator>
+        <MenuItem Header="复制" Click="handleRuleMenuClick" Tag="copy">
+            <MenuItem.Icon>
+                <Image Source="Resources/copy.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator></Separator>
+        <MenuItem Header="上移" Click="handleRuleMenuClick" Tag="up">
+            <MenuItem.Icon>
+                <Image Source="Resources/up.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="下移" Click="handleRuleMenuClick" Tag="down">
+            <MenuItem.Icon>
+                <Image Source="Resources/down.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
+    <!-- Rule菜单__FILE -->
+    <ContextMenu x:Key="menu_rule_file">
+        <MenuItem Header="修改" Click="handleRuleMenuClick" Tag="modify">
+            <MenuItem.Icon>
+                <Image Source="Resources/modify.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="删除" Click="handleRuleMenuClick" Tag="delete">
+            <MenuItem.Icon>
+                <Image Source="Resources/delete.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator></Separator>
+        <MenuItem Header="复制" Click="handleRuleMenuClick" Tag="copy">
+            <MenuItem.Icon>
+                <Image Source="Resources/copy.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator></Separator>
+        <MenuItem Header="上移" Click="handleRuleMenuClick" Tag="up">
+            <MenuItem.Icon>
+                <Image Source="Resources/up.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="下移" Click="handleRuleMenuClick" Tag="down">
+            <MenuItem.Icon>
+                <Image Source="Resources/down.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator></Separator>
+        <MenuItem Header="打开文件位置" Click="handleRuleMenuClick" Tag="open">
+            <MenuItem.Icon>
+                <Image Source="Resources/file.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
+    <!--#endregion-->
+
+    <!--#region 导航栏样式-->
+    <!-- 背景 -->
+    <Style x:Key="nav_style_bg" TargetType="StackPanel">
+        <Setter Property="Background" Value="#FF4F5E6E"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    <!-- 标题样式 -->
+    <Style x:Key="nav_style_title" TargetType="Label">
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Padding" Value="0,5,0,0"></Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region 导航栏模板-->
+    <!-- 省略号 -->
+    <ControlTemplate x:Key="nav_ellipsis">
+        <StackPanel Margin="0,16" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Ellipse Width="6" Height="6" Fill="#FFA8A8A8" Margin="0,0,6,0"/>
+            <Ellipse Width="6" Height="6" Fill="#FFA8A8A8" Margin="0,0,6,0"/>
+            <Ellipse Width="6" Height="6" Fill="#FFA8A8A8"/>
+        </StackPanel>
+    </ControlTemplate>
+    <!--#endregion-->
+
+    <!--#region 内容区域样式 -->
+    <!-- 标题 -->
+    <Style x:Key="main_style_title" TargetType="Label">
+        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="Foreground" Value="#FFEC8E72"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+    </Style>
+    <!-- 操作  新增 -->
+    <Style x:Key="main_style_operation" TargetType="Label">
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="#FFEC8E72"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Margin" Value="5,0"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+    <!-- 操作  全禁 -->
+    <Style x:Key="main_style_operation_disable" BasedOn="{StaticResource main_style_operation}" TargetType="Label">
+        <Setter Property="Foreground" Value="Gray"></Setter>
+    </Style>
+    <!-- 竖线 -->
+    <Style x:Key="main_style_vert_line" TargetType="Line">
+        <Setter Property="Stroke" Value="#FFEC8E72"></Setter>
+        <Setter Property="StrokeThickness" Value="2"></Setter>
+        <Setter Property="Y1" Value="30"></Setter>
+        <Setter Property="Width" Value="2"></Setter>
+        <Setter Property="StrokeDashArray" Value="3 2"></Setter>
+    </Style>
+    <!-- 横线 -->
+    <Style x:Key="main_style_hori_line" TargetType="Label">
+        <Setter Property="Height" Value="1"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="Background" Value="#FFE4E4E4"></Setter>
+    </Style>
+    <!-- 提示语 -->
+    <Style x:Key="main_style_tips" TargetType="TextBlock">
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"></Setter>
+        <Setter Property="TextWrapping" Value="NoWrap"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="#FF6C6C6C"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+    <!-- 文本 -->
+    <Style x:Key="main_style_text" TargetType="TextBlock" BasedOn="{StaticResource main_style_tips}">
+        <Setter Property="Padding" Value="5,0,0,0"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"></Setter>
+    </Style>
+    <!-- 未选中框 -->
+    <Style x:Key="main_style_rect" TargetType="Rectangle">
+        <Setter Property="Width" Value="18"></Setter>
+        <Setter Property="Height" Value="18"></Setter>
+        <Setter Property="Stroke" Value="#FF939393"></Setter>
+        <Setter Property="Fill" Value="White"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="StrokeThickness" Value="2"></Setter>
+    </Style>
+    <!-- 已选中框 -->
+    <Style x:Key="main_style_rect_check" TargetType="Rectangle" BasedOn="{StaticResource main_style_rect}">
+        <Setter Property="Stroke" Value="#FFEC8E72"></Setter>
+        <Setter Property="Fill" Value="#00FFFFFF"></Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region 内容区域模板 -->
+    <!-- 指引 -->
+    <ControlTemplate x:Key="main_guide">
+        <Canvas Width="16" Height="16" Background="#FFF0F3F6" Cursor="Hand">
+            <Path Fill="#FFEC8E72" Data="M8 0.667c-4.067 0-7.333 3.267-7.333 7.333s3.267 7.333 7.333 7.333 7.333-3.267 7.333-7.333-3.267-7.333-7.333-7.333zM8 14c-3.333 0-6-2.667-6-6s2.667-6 6-6c3.333 0 6 2.667 6 6s-2.667 6-6 6z" />
+            <Path Fill="#FFEC8E72" Data="M8.8 4.133c-1.4-0.467-2.933 0.267-3.4 1.6-0.067 0.4 0.067 0.8 0.467 0.867 0.333 0.133 0.733-0.067 0.867-0.4 0.267-0.667 1-1.067 1.733-0.8 0.533 0.2 0.867 0.667 0.867 1.267 0 0.667-1.133 1.2-1.533 1.4-0.333 0.133-0.533 0.467-0.4 0.867 0.067 0.267 0.333 0.467 0.6 0.467 0.067 0 0.133 0 0.2-0.067 0.267-0.067 2.467-0.867 2.467-2.6-0.067-1.2-0.8-2.2-1.867-2.6z" />
+            <Path Fill="#FFEC8E72" Data="M7.533 10.867c-0.133 0.133-0.2 0.267-0.2 0.467s0.067 0.333 0.2 0.467c0.133 0.133 0.267 0.2 0.467 0.2s0.333-0.067 0.467-0.2c0.133-0.133 0.2-0.333 0.2-0.467s-0.067-0.333-0.2-0.467c-0.267-0.267-0.667-0.267-0.933 0z" />
+        </Canvas>
+    </ControlTemplate>
+    <!-- 名称 -->
+    <ControlTemplate x:Key="main_name">
+        <Grid Height="40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Canvas Grid.Column="0" Tag="{Binding Path=Index}" MouseLeftButtonDown="changeItemShow" Width="22" Height="22" Cursor="Hand" Background="White" Visibility="{Binding Path=ContentHide}">
+                <Path Fill="#FF6C6C6C" Data="M14.392 10.358l-5.5-5.5c-0.367-0.367-0.917-0.367-1.283 0s-0.367 0.917 0 1.283l4.858 4.858-4.858 4.858c-0.367 0.367-0.367 0.917 0 1.283 0.183 0.183 0.367 0.275 0.642 0.275s0.458-0.092 0.642-0.275l5.5-5.5c0.367-0.367 0.367-0.917 0-1.283z" />
+            </Canvas>
+            <Canvas Grid.Column="0" Tag="{Binding Path=Index}" MouseLeftButtonDown="changeItemShow" Width="22" Height="22" Cursor="Hand" Background="White" Visibility="{Binding Path=ContentShow}">
+                <Path Fill="#FFEC8E72" Data="M17.142 7.608c-0.367-0.367-0.917-0.367-1.283 0l-4.858 4.858-4.858-4.858c-0.367-0.367-0.917-0.367-1.283 0s-0.367 0.917 0 1.283l5.5 5.5c0.183 0.183 0.458 0.275 0.642 0.275s0.458-0.092 0.642-0.275l5.5-5.5c0.367-0.367 0.367-0.917 0-1.283z" />
+            </Canvas>
+
+            <Label Grid.Column="1" Content="{Binding Path=Name}" Tag="{Binding Path=Index}" MouseDoubleClick="modifyItem" ContextMenu="{StaticResource menu_item}" VerticalContentAlignment="Center" Foreground="#FF6C6C6C" FontSize="12" Padding="0"></Label>
+
+            <Rectangle Grid.Column="2" Tag="{Binding Path=Index}" MouseLeftButtonDown="changeItemEnable" Visibility="{Binding Path=CheckHide}" Style="{StaticResource main_style_rect}"></Rectangle>
+            <Canvas Grid.Column="2" Width="12" Height="12" Visibility="{Binding Path=CheckShow}">
+                <Path Fill="#FFEC8E72" Data="M10.125 1.5l-5.625 5.625-2.625-2.625-1.875 1.875 4.5 4.5 7.5-7.5z" />
+            </Canvas>
+            <Rectangle Grid.Column="2" Tag="{Binding Path=Index}" MouseLeftButtonDown="changeItemEnable" Visibility="{Binding Path=CheckShow}" Style="{StaticResource main_style_rect_check}"></Rectangle>
+        </Grid>
+    </ControlTemplate>
+    <!-- 文本模板 -->
+    <ControlTemplate x:Key="main_text">
+        <Label ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}" Height="26" VerticalContentAlignment="Center">
+            <TextBlock Style="{StaticResource main_style_text}"></TextBlock>
+        </Label>
+    </ControlTemplate>
+    <!-- 容器模板__HOST -->
+    <ControlTemplate x:Key="main_wrap_host">
+        <StackPanel Background="White" Margin="0,0,0,10">
+            <Label Template="{StaticResource main_name}"></Label>
+            <StackPanel Visibility="{Binding Path=ContentShow}">
+                <Grid Height="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="70*"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Line Grid.Column="0" Style="{StaticResource main_style_vert_line}"/>
+                    <TextBlock Grid.Column="1" Text="IP" ToolTip="IP" Style="{StaticResource main_style_tips}"></TextBlock>
+                    <TextBlock Grid.Column="2" Text="URL" ToolTip="URL" Style="{StaticResource main_style_tips}"></TextBlock>
+                </Grid>
+                <StackPanel Name="content"></StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </ControlTemplate>
+    <!-- 内容模板__HOST -->
+    <ControlTemplate x:Key="main_content_host">
+        <Grid Height="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="70*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Line Grid.Column="0" Style="{StaticResource main_style_vert_line}"/>
+            <Label Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource main_style_hori_line}"></Label>
+
+            <Label Grid.Column="1" MouseDoubleClick="modifyRule" Tag="{Binding Path=IndexAndParentIndex}" Content="{Binding Path=IpAndPort}" ContextMenu="{StaticResource menu_rule}" Template="{StaticResource main_text}"></Label>
+            <Label Grid.Column="2" MouseDoubleClick="modifyRule" Tag="{Binding Path=IndexAndParentIndex}" Content="{Binding Path=Url}" ContextMenu="{StaticResource menu_rule}" Template="{StaticResource main_text}"></Label>
+
+            <Rectangle Grid.Column="3" Tag="{Binding Path=IndexAndParentIndex}" MouseLeftButtonDown="changeRuleEnable" Visibility="{Binding Path=CheckHide}" Style="{StaticResource main_style_rect}"></Rectangle>
+            <Canvas Grid.Column="3" Width="12" Height="12" Visibility="{Binding Path=CheckShow}">
+                <Path Fill="#FFEC8E72" Data="M10.125 1.5l-5.625 5.625-2.625-2.625-1.875 1.875 4.5 4.5 7.5-7.5z" />
+            </Canvas>
+            <Rectangle Grid.Column="3" Tag="{Binding Path=IndexAndParentIndex}" MouseLeftButtonDown="changeRuleEnable" Visibility="{Binding Path=CheckShow}" Style="{StaticResource main_style_rect_check}"></Rectangle>
+        </Grid>
+    </ControlTemplate>
+    <!-- 容器模板__FILE -->
+    <ControlTemplate x:Key="main_wrap_file">
+        <StackPanel Background="White" Margin="0,0,0,10">
+            <Label Template="{StaticResource main_name}"></Label>
+            <StackPanel Visibility="{Binding Path=ContentShow}">
+                <Grid Height="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Line Grid.Column="0" Style="{StaticResource main_style_vert_line}"/>
+                    <TextBlock Grid.Column="1" Text="URL" ToolTip="URL" Style="{StaticResource main_style_tips}"></TextBlock>
+                    <TextBlock Grid.Column="2" Text="文件路径" ToolTip="文件路径" Style="{StaticResource main_style_tips}"></TextBlock>
+                </Grid>
+                <StackPanel Name="content"></StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </ControlTemplate>
+    <!-- 内容模板__FILE -->
+    <ControlTemplate x:Key="main_content_file">
+        <Grid Height="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Line Grid.Column="0" Style="{StaticResource main_style_vert_line}"/>
+            <Label Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource main_style_hori_line}"></Label>
+
+            <Label Grid.Column="1" MouseDoubleClick="modifyRule" Tag="{Binding Path=IndexAndParentIndex}" Content="{Binding Path=Url}" ContextMenu="{StaticResource menu_rule_file}" Template="{StaticResource main_text}"></Label>
+            <Label Grid.Column="2" MouseDoubleClick="modifyRule" Tag="{Binding Path=IndexAndParentIndex}" Content="{Binding Path=Path}" ContextMenu="{StaticResource menu_rule_file}" Template="{StaticResource main_text}"></Label>
+
+            <Rectangle Grid.Column="3" Tag="{Binding Path=IndexAndParentIndex}" MouseLeftButtonDown="changeRuleEnable" Visibility="{Binding Path=CheckHide}" Style="{StaticResource main_style_rect}"></Rectangle>
+            <Canvas Grid.Column="3" Width="12" Height="12" Visibility="{Binding Path=CheckShow}">
+                <Path Fill="#FFEC8E72" Data="M10.125 1.5l-5.625 5.625-2.625-2.625-1.875 1.875 4.5 4.5 7.5-7.5z" />
+            </Canvas>
+            <Rectangle Grid.Column="3" Tag="{Binding Path=IndexAndParentIndex}" MouseLeftButtonDown="changeRuleEnable" Visibility="{Binding Path=CheckShow}" Style="{StaticResource main_style_rect_check}"></Rectangle>
+        </Grid>
+    </ControlTemplate>
+    <!-- 容器模板__HTTPS -->
+    <ControlTemplate x:Key="main_wrap_https">
+        <StackPanel Background="White" Margin="0,0,0,10">
+            <Label Template="{StaticResource main_name}"></Label>
+            <StackPanel Visibility="{Binding Path=ContentShow}">
+                <Grid Height="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Line Grid.Column="0" Style="{StaticResource main_style_vert_line}"/>
+                    <TextBlock Grid.Column="1" Text="URL" ToolTip="URL" Style="{StaticResource main_style_tips}"></TextBlock>
+                </Grid>
+                <StackPanel Name="content"></StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </ControlTemplate>
+    <!-- 内容模板__HTTPS -->
+    <ControlTemplate x:Key="main_content_https">
+        <Grid Height="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Line Grid.Column="0" Style="{StaticResource main_style_vert_line}"/>
+            <Label Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource main_style_hori_line}"></Label>
+
+            <Label Grid.Column="1" MouseDoubleClick="modifyRule" Tag="{Binding Path=IndexAndParentIndex}" Content="{Binding Path=Url}" ContextMenu="{StaticResource menu_rule}" Template="{StaticResource main_text}"></Label>
+
+            <Rectangle Grid.Column="2" Tag="{Binding Path=IndexAndParentIndex}" MouseLeftButtonDown="changeRuleEnable" Visibility="{Binding Path=CheckHide}" Style="{StaticResource main_style_rect}"></Rectangle>
+            <Canvas Grid.Column="2" Width="12" Height="12" Visibility="{Binding Path=CheckShow}">
+                <Path Fill="#FFEC8E72" Data="M10.125 1.5l-5.625 5.625-2.625-2.625-1.875 1.875 4.5 4.5 7.5-7.5z" />
+            </Canvas>
+            <Rectangle Grid.Column="2" Tag="{Binding Path=IndexAndParentIndex}" MouseLeftButtonDown="changeRuleEnable" Visibility="{Binding Path=CheckShow}" Style="{StaticResource main_style_rect_check}"></Rectangle>
+        </Grid>
+    </ControlTemplate>
+    <!--#endregion-->
+
+    <!--#region 工具库样式 -->
+    <!-- 名称 -->
+    <Style x:Key="tool_style_title" TargetType="Label">
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Margin" Value="0,7,0,5"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Foreground" Value="Gray"></Setter>
+        <Setter Property="BorderBrush" Value="Gray"></Setter>
+        <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+    </Style>
+    <!-- 长名称 -->
+    <Style x:Key="tool_style_title_long" TargetType="Label">
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Margin" Value="5,0,0,0"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Foreground" Value="Gray"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+    </Style>
+    <!-- 输入框 -->
+    <Style x:Key="tool_style_input" TargetType="TextBox">
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Background" Value="{x:Null}"></Setter>
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="BorderBrush" Value="Gray"></Setter>
+        <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+    <!-- textarea -->
+    <Style x:Key="tool_style_textarea" TargetType="TextBox" BasedOn="{StaticResource tool_style_input}">
+        <Setter Property="Height" Value="90"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="AcceptsReturn" Value="True"></Setter>
+    </Style>
+    <!-- 按钮__Label -->
+    <Style x:Key="tool_style_btn_label" TargetType="Label">
+        <Setter Property="Width" Value="44"></Setter>
+        <Setter Property="Height" Value="44"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Margin" Value="0,-44,0,0"></Setter>
+    </Style>
+    <!-- 按钮__发送 -->
+    <Style x:Key="tool_style_btn_send" TargetType="Label">
+        <Setter Property="Width" Value="50"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Background" Value="#FF82A6F5"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    <!-- 按钮__清空 -->
+    <Style x:Key="tool_style_btn_clear" TargetType="Label">
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Margin" Value="0,0,20,0"></Setter>
+        <Setter Property="Padding" Value="20,0,20,0"></Setter>
+        <Setter Property="Background" Value="#FF82A6F5"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    <!-- 说明__颜色提示 -->
+    <Style x:Key="tool_style_tips" TargetType="Label">
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="Foreground" Value="#FF808080"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+    <!-- 日志__未选中 -->
+    <Style x:Key="tool_style_console_check_no" TargetType="Ellipse">
+        <Setter Property="Width" Value="24"></Setter>
+        <Setter Property="Height" Value="24"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Fill" Value="#00000000"></Setter>
+        <Setter Property="Stroke" Value="#FFEC8E72"></Setter>
+        <Setter Property="StrokeThickness" Value="3"></Setter>
+    </Style>
+    <!-- 日志__筛选文案 -->
+    <Style x:Key="tool_style_console_text" TargetType="Label">
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Margin" Value="5,0,0,0"></Setter>
+        <Setter Property="Foreground" Value="#FF808080"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+    </Style>
+    <!-- 日志__输出__log -->
+    <Style x:Key="tool_style_console_log" TargetType="Paragraph">
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="Padding" Value="5"></Setter>
+    </Style>
+    <!-- 日志__输出__warn -->
+    <Style x:Key="tool_style_console_warn" TargetType="Paragraph">
+        <Setter Property="Foreground" Value="#FF9F895F"></Setter>
+        <Setter Property="Background" Value="#FFFFFBE6"></Setter>
+        <Setter Property="BorderBrush" Value="#FFF3D533"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="Padding" Value="5"></Setter>
+    </Style>
+    <!-- 日志__输出__error -->
+    <Style x:Key="tool_style_console_error" TargetType="Paragraph">
+        <Setter Property="Foreground" Value="Red"></Setter>
+        <Setter Property="Background" Value="#FFFFF0F0"></Setter>
+        <Setter Property="BorderBrush" Value="#FFFAD7D7"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="Padding" Value="5"></Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region 工具库模板 -->
+    <!-- ICON__圆 -->
+    <ControlTemplate x:Key="tool_ellipse">
+        <StackPanel>
+            <WrapPanel Visibility="{Binding Path=CheckShow}">
+                <Ellipse Width="44" Height="44" Fill="#FFEC8E72"/>
+                <Ellipse Width="40" Height="40" Fill="#FFEC8E72" Stroke="White" Margin="-44,0,0,0"/>
+            </WrapPanel>
+            <WrapPanel Visibility="{Binding Path=CheckHide}">
+                <Ellipse Width="44" Height="44" Stroke="#FF919191" StrokeThickness="2" Fill="#00000000"/>
+            </WrapPanel>
+        </StackPanel>
+    </ControlTemplate>
+    <!-- 日志__选中 -->
+    <ControlTemplate x:Key="tool_console_check_yes">
+        <WrapPanel Width="24" Height="24" Cursor="Hand">
+            <Ellipse Width="24" Height="24" Stroke="#FFEC8E72" StrokeThickness="3" Fill="#FFEC8E72"></Ellipse>
+            <Canvas Width="14" Height="14" Margin="-24,0,0,0">
+                <Path Fill="#FFFFFF" Data="M11.813 1.75l-6.563 6.563-3.063-3.063-2.188 2.188 5.25 5.25 8.75-8.75z" />
+            </Canvas>
+        </WrapPanel>
+    </ControlTemplate>
+    <!--#endregion-->
+
+    <!--#region 弹框样式 -->
+    <!-- 标题 -->
+    <Style x:Key="alert_style_title" TargetType="Label">
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="Foreground" Value="#FF666666"></Setter>
+        <Setter Property="Margin" Value="0,20,0,0"></Setter>
+    </Style>
+    <!-- 容器 -->
+    <Style x:Key="alert_style_wrap" TargetType="StackPanel">
+        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="Orientation" Value="Horizontal"></Setter>
+    </Style>
+    <!-- 容器__TextArea -->
+    <Style x:Key="alert_style_wrap_textarea" TargetType="StackPanel" BasedOn="{StaticResource alert_style_wrap}">
+        <Setter Property="Height" Value="110"></Setter>
+    </Style>
+    <!-- 名称 -->
+    <Style x:Key="alert_style_name" TargetType="Label">
+        <Setter Property="Width" Value="80"></Setter>
+        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Right"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Margin" Value="30,0,0,0"></Setter>
+        <Setter Property="Foreground" Value="#FF666666"></Setter>
+    </Style>
+    <!-- 输入框 -->
+    <Style x:Key="alert_style_input" TargetType="TextBox">
+        <Setter Property="Width" Value="300"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Margin" Value="10,10,0,0"></Setter>
+        <Setter Property="Background" Value="{x:Null}"></Setter>
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="BorderBrush" Value="#FF666666"></Setter>
+        <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+    <!-- 输入框__TextArea -->
+    <Style x:Key="alert_style_textarea" TargetType="TextBox" BasedOn="{StaticResource alert_style_input}">
+        <Setter Property="Height" Value="90"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="Padding" Value="0,0,0,5"></Setter>
+    </Style>
+    <!-- 确定按钮 -->
+    <Style x:Key="alert_style_sure_btn" TargetType="Label">
+        <Setter Property="Width" Value="120"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Margin" Value="0,20,0,0"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Background" Value="#FFEC8E72"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+    <!-- 说明 -->
+    <Style x:Key="alert_style_explain" TargetType="TextBlock">
+        <Setter Property="Padding" Value="10 5"></Setter>
+        <Setter Property="Foreground" Value="#FF4B4B4B"></Setter>
+    </Style>
+    <!-- 说明__Label -->
+    <Style x:Key="alert_style_explain_label" TargetType="Label">
+        <Setter Property="Foreground" Value="#FF4B4B4B"></Setter>
+        <Setter Property="Padding" Value="0,5,0,0"></Setter>
+    </Style>
+    <!-- 说明__强调 -->
+    <Style x:Key="alert_style_explain_emphasize" TargetType="Label">
+        <Setter Property="Foreground" Value="Red"></Setter>
+        <Setter Property="Padding" Value="0,5,0,0"></Setter>
+    </Style>
+    <!--#endregion-->
+</ResourceDictionary>
