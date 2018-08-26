@@ -42,6 +42,8 @@ namespace FPlug.Tools
             {
                 return;
             }
+            //更新版本号
+            filterVersionInfo(session);
             //FILE映射
             handleFileMapping(session);
             //console日志
@@ -239,6 +241,19 @@ namespace FPlug.Tools
         #endregion
 
         #region Response相关函数
+        //版本号查询
+        private static void filterVersionInfo(Session session)
+        {
+            if (Container.tabModel.Version != "")
+            {
+                return;
+            }
+
+            if (session.fullUrl == StaticResourcesTool.versionUrlStr && session.responseCode.ToString() == "200")
+            {
+                Container.tabModel.Version = session.GetResponseBodyAsString();
+            }
+        }
         //FILE映射
         private static void handleFileMapping(Session session)
         {

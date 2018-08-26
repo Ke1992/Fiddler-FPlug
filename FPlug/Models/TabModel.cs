@@ -8,6 +8,33 @@ namespace FPlug.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #region version、download
+        private string _version;
+        public string Version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                if (_version != value)
+                {
+                    _version = value;
+                    NotifyPropertyChanged("Version");
+                    NotifyPropertyChanged("Download");
+                }
+            }
+        }
+        public Visibility Download
+        {
+            get
+            {
+                return string.Compare(_version, StaticResourcesTool.version) > 0 ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+        #endregion
+
         #region enable、IconSource
         private bool _enable;
         public bool Enable
@@ -267,6 +294,7 @@ namespace FPlug.Models
         {
             _enable = Main.mainData.getEnable();
             _consoleShow = (Main.mainData.getToolByType("console") as ToolModel).Enable;
+            _version = "";
             _type = "host";
             _consoleType = "all";
         }

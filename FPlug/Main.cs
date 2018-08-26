@@ -62,6 +62,8 @@ namespace FPlug
                 {
                     //初始化UI
                     Init();
+                    //主动发起一个请求，用来查询最新的版本号
+                    FiddlerApplication.oProxy.SendRequest(StaticResourcesTool.versionRequestStr, null);
                     //移除委托监听
                     FiddlerApplication.UI.tabsViews.Selected -= tabSelectedEvent;
                     FiddlerApplication.Log.LogString("FPlug初始化完成！");

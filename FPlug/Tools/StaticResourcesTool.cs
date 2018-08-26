@@ -2,8 +2,21 @@
 {
     public class StaticResourcesTool
     {
+        //当前版本
+        public static string version = "v1.0.0";
+
         //工具key数组
         public static string[] keys = new string[] { "cache", "console", "serverip", "useragent", "invade" };
+
+        //查询版本URL
+        public static string versionUrlStr = "https://raw.githubusercontent.com/Ke1992/FPlug/master/version.js";
+
+        //查询版本请求信息
+        public static string versionRequestStr = "GET https://raw.githubusercontent.com/Ke1992/FPlug/master/version.js HTTP/1.1\n" +
+            "Host: raw.githubusercontent.com\n" +
+            "Cache-Control: max-age=0\n" +
+            "User-Agent: Fiddler\n" +
+            "Accept-Language: zh-CN,zh;q=0.8\n\n";
 
         //脚本注入到html页面中，抓取页面的console输出，发出POST请求，FIddler捕获以后打印
         public static string consoleScriptStr = "<!DOCTYPE HTML><script type='text/javascript'>" +
