@@ -317,7 +317,14 @@ namespace FPlug.Tools
                     }
                     catch (Exception e)
                     {
-                        FiddlerApplication.DoNotifyUser(e.ToString(), "FILE映射错误");
+                        //直接修改状态返回码为404
+                        session.responseCode = 404;
+                        //设置新的返回体
+                        session.utilSetResponseBody(e.ToString());
+                        //输出错误
+                        FiddlerApplication.Log.LogString("FPlug插件：FILE映射错误");
+                        FiddlerApplication.Log.LogString(e.ToString());
+                        //FiddlerApplication.DoNotifyUser(e.ToString(), "FILE映射错误");
                     }
                     //直接结束循环
                     break;
