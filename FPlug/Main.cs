@@ -1,8 +1,10 @@
 ﻿using Fiddler;
 using FPlug.Models;
+using FPlug.Tools;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
-using FPlug.Tools;
 
 namespace FPlug
 {
@@ -12,6 +14,8 @@ namespace FPlug
         public static int iconCount;
         public static Container container;
         public static MainModel mainData;
+        public static float dpiXScale;
+        public static float dpiYScale;
 
         #region 构造函数、Init函数(初始化UI界面)
         public Main()
@@ -30,6 +34,7 @@ namespace FPlug
             //初始化icon
             page.ImageIndex = iconCount - 2;
         }
+
         private void Init()
         {
             //将WinForm和WPF联系起来(在WinForm中调用WPF)
@@ -37,6 +42,20 @@ namespace FPlug
             element.Child = container;
             element.Dock = DockStyle.Fill;
 
+            //获取系统的DPI
+            var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
+            var dpiYProperty = typeof(SystemParameters).GetProperty("Dpi", BindingFlags.NonPublic | BindingFlags.Static);
+            int dpiX = (int)dpiXProperty.GetValue(null, null);
+            int dpiY = (int)dpiYProperty.GetValue(null, null);
+
+            //设置DPI的缩放比例
+            dpiXScale = (float)96.0 / dpiX;
+            dpiYScale = (float)96.0 / dpiY;
+
+            //TODO:实在用不来SizeF，先使用不推荐的方法，后面再进行替换
+            element.Scale(dpiXScale, dpiYScale);
+
+            //将wpf挂载对象添加到page中
             page.Controls.Add(element);
         }
         #endregion
@@ -48,7 +67,6 @@ namespace FPlug
 
         public void OnLoad()
         {
-            #region 用户点击插件的tab才渲染页面
             //初始化数据
             mainData = new MainModel();
             //初始化UI
@@ -91,6 +109,5 @@ namespace FPlug
                 FiddlerTool.handleWebSocket(session, msg);
             };
         }
-        #endregion
     }
 }
