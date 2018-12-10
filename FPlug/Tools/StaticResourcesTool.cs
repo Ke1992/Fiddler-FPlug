@@ -3,7 +3,7 @@
     public class StaticResourcesTool
     {
         //当前版本
-        public static string version = "v1.0.0";
+        public static string version = "v1.0.1";
 
         //工具key数组
         public static string[] keys = new string[] { "cache", "console", "serverip", "useragent", "invade" };

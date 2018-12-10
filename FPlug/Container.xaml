@@ -89,7 +89,7 @@
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <Label Foreground="#FF808080" Padding="0,0,5,15">当前版本 v1.0.0，最新版本</Label>
+                        <Label Foreground="#FF808080" Padding="0,0,5,15">当前版本 v1.0.1，最新版本</Label>
                         <Label Foreground="Red" Padding="0,0,0,15" Content="{Binding Path=Version}"></Label>
                         <TextBox Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF808080" Padding="0" BorderThickness="0" Margin="0" Visibility="{Binding Path=Download}">(最新版地址：https://github.com/Ke1992/FPlug)</TextBox>
                     </WrapPanel>
