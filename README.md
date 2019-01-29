@@ -6,7 +6,7 @@ v1.0.2 ([更新日志](https://github.com/Ke1992/Fiddler-FPlug/blob/master/CHANG
 Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">(开发过程中是以Fiddler 5.0版本为基准)</font>，同时要求.NET Framework 4.6.1以上
 # 下载安装
 #### 1、Exe文件
-下载执行dist中的FPlug.exe文件
+下载执行dist中的[FPlug.exe](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/dist/FPlug.exe)文件
 #### 2、手动安装
 下载dist中的两个dll文件，然后复制到Fiddler安装目录中的Scripts文件夹。
 # 特性
