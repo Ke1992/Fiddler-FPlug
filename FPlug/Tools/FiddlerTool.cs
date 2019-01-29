@@ -37,13 +37,13 @@ namespace FPlug.Tools
 
         public static void handleResponse(Session session)
         {
+            //更新版本号
+            filterVersionInfo(session);
             //没有启用插件
             if (!Main.mainData.getEnable())
             {
                 return;
             }
-            //更新版本号
-            filterVersionInfo(session);
             //FILE映射
             handleFileMapping(session);
             //console日志
@@ -419,11 +419,11 @@ namespace FPlug.Tools
         {
             if (enable)
             {
-                Main.page.ImageIndex = Main.iconCount - 2;
+                Main.page.ImageIndex = FiddlerApplication.UI.tabsViews.ImageList.Images.IndexOfKey("FPlug_Icon");
             }
             else
             {
-                Main.page.ImageIndex = Main.iconCount - 1;
+                Main.page.ImageIndex = FiddlerApplication.UI.tabsViews.ImageList.Images.IndexOfKey("FPlug_Icon_No");
             }
         }
         //显示隐藏ServerIP

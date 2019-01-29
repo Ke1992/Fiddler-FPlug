@@ -36,8 +36,8 @@
     <Reference Include="Fiddler">
       <HintPath>..\..\..\Users\柯俊盛\AppData\Local\Programs\Fiddler\Fiddler.exe</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -140,7 +140,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <Resource Include="Resources\icon_no.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -178,7 +177,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ExplainImages\Host\HsotResult_1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

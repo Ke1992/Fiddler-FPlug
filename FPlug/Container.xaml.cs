@@ -150,6 +150,12 @@ namespace FPlug
             //清空
             this.tool_invade_content.Text = "";
         }
+        //打开下载页面
+        private void goToDownloadPage(object sender, MouseButtonEventArgs e)
+        {
+            //使用默认浏览器，打开下载页面
+            System.Diagnostics.Process.Start("https://github.com/Ke1992/FPlug");
+        }
         #endregion
 
         #region 私有方法(内部工具方法)

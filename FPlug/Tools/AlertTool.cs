@@ -14,7 +14,7 @@ namespace FPlug.Tools
         {
             ItemAlertUI itemAlertUI = new ItemAlertUI(index);
             //初始化窗体
-            Window window = initWindow(200);
+            Window window = initWindow("项目配置", 200);
             //设置window窗体内容
             window.Content = itemAlertUI;
             //自动聚焦
@@ -23,12 +23,12 @@ namespace FPlug.Tools
             window.ShowDialog();
         }
 
-        //显示host弹框
+        //显示rule弹框
         public static void showRuleAlertUI(int parentIndex, int index = -1, string handleType = "")
         {
             string type = Main.mainData.type;
             //初始化窗体
-            Window window = initWindow(310);
+            Window window = initWindow("规则配置", 310);
             //设置window窗体内容
             if (type == "host")
             {
@@ -58,9 +58,30 @@ namespace FPlug.Tools
         //显示说明弹框
         public static void showExplainAlertUI(string type)
         {
+            string title = "";
+            if (type == "host")
+            {
+                title = "HOST 映射";
+            }
+            else if (type == "file")
+            {
+                title = "FILE 映射";
+            }
+            else if (type == "https")
+            {
+                title = "HTTPS 转 HTTP";
+            }
+            else if (type == "tools")
+            {
+                title = "工具库";
+            }
+            else if (type == "console")
+            {
+                title = "CONSOLE 日志";
+            }
             ExplainAlertUI explainAlertUI = new ExplainAlertUI(type);
             //初始化窗体
-            Window window = initWindow(450, 700);
+            Window window = initWindow(title, 450, 700);
             //设置window窗体内容
             window.Content = explainAlertUI;
             //显示窗体
@@ -70,7 +91,7 @@ namespace FPlug.Tools
 
         #region 内部方法
         //初始化窗体
-        private static Window initWindow(int height, int width = 500)
+        private static Window initWindow(string tilte, int height, int width = 500)
         {
             IntPtr iconPtr = Properties.Resources.icon.GetHbitmap();
             ImageSource icon = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(iconPtr, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
@@ -81,7 +102,7 @@ namespace FPlug.Tools
             window.Height = height + 30;//状态栏的高度是30
             //去掉最小化、最大化按钮
             window.ResizeMode = 0;
-            window.Title = "项目配置";
+            window.Title = tilte;
             //设置显示在中间
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             //设置icon

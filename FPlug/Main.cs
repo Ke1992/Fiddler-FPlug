@@ -11,7 +11,6 @@ namespace FPlug
     public class Main : UserControl, IFiddlerExtension
     {
         public static TabPage page;
-        public static int iconCount;
         public static Container container;
         public static MainModel mainData;
         public static float dpiXScale;
@@ -21,18 +20,15 @@ namespace FPlug
         public Main()
         {
             //添加tab的icon图片进入列表
-            FiddlerApplication.UI.tabsViews.ImageList.Images.Add(Properties.Resources.icon);
-            FiddlerApplication.UI.tabsViews.ImageList.Images.Add(Properties.Resources.icon_no);
-
-            //首先保存所有icon的总数、当前tab的page的数量
-            iconCount = FiddlerApplication.UI.tabsViews.ImageList.Images.Count;
+            FiddlerApplication.UI.tabsViews.ImageList.Images.Add("FPlug_Icon", Properties.Resources.icon);
+            FiddlerApplication.UI.tabsViews.ImageList.Images.Add("FPlug_Icon_No", Properties.Resources.icon_no);
 
             //初始化page
             page = new TabPage("FPlug");
             //将page加入fiddler的tab选项卡中
             FiddlerApplication.UI.tabsViews.TabPages.Add(page);
             //初始化icon
-            page.ImageIndex = iconCount - 2;
+            page.ImageIndex = FiddlerApplication.UI.tabsViews.ImageList.Images.IndexOfKey("FPlug_Icon");
         }
 
         private void Init()

@@ -61,7 +61,7 @@ RequestExecutionLevel "admin"
 ;指定压缩方式
 SetCompressor lzma
 ;显示在底部的文案
-BrandingText "FPlug v1.0.1"
+BrandingText "FPlug v1.0.2"
 ;设置安装路径
 ;$PROGRAMFILES：程序文件目录(通常为 C:\Program Files 但是运行时会检测)
 InstallDir "$PROGRAMFILES\Fiddler\Scripts\"
