@@ -1,7 +1,7 @@
 # FPlug
 FPlug是一个Fiddler插件，提供Web开发中可能使用到的一系列工具（[whistle版FPlug](https://github.com/Ke1992/whistle.FPlug)），[插件开发指南](https://github.com/Ke1992/Fiddler-Plug-Example)
 # 版本
-v1.0.2 ([更新日志](https://github.com/Ke1992/Fiddler-FPlug/blob/master/CHANGELOG.md))
+v1.0.3 ([更新日志](https://github.com/Ke1992/Fiddler-FPlug/blob/master/CHANGELOG.md))
 # 环境要求
 Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">（开发过程中是以Fiddler 5.0版本为基准）</font>，同时要求.NET Framework 4.6.1以上
 # 下载安装
@@ -15,6 +15,7 @@ Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">（开
 * HTTPS 转 HTTP
 * 显示ServerIP
 * 禁止缓存
+* vConsole注入
 * console日志
 * UA模拟
 * JS注入
@@ -72,6 +73,10 @@ Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">（开
 　　　　a、删除Expires  
 　　　　b、强制修改Pragma为no-cache  
 　　　　c、强制修改Cache-Control为no-cache  
+### vConsole注入
+1、开启后，会往Content-Type包含text/html，并且，包含&lt;html&gt;或者&lt;html 的请求中注入vConsole  
+2、示例：  
+![blockchain](https://github.com/Ke1992/FPlug/blob/master/guide/vconsole.gif "vConsole")
 ### console日志
 1、开启后会增加日志面板，同时会主动往网页中注入JS脚本，修改console方法，捕获日志后发起POST请求  
 2、日志输出的顺序请以序号为准  
