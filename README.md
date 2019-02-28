@@ -1,9 +1,9 @@
 # FPlug
-FPlug是一个Fiddler插件，提供Web开发中可能使用到的一系列工具
+FPlug是一个Fiddler插件，提供Web开发中可能使用到的一系列工具（[whistle版FPlug](https://github.com/Ke1992/whistle.FPlug)）
 # 版本
 v1.0.2 ([更新日志](https://github.com/Ke1992/Fiddler-FPlug/blob/master/CHANGELOG.md))
 # 环境要求
-Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">(开发过程中是以Fiddler 5.0版本为基准)</font>，同时要求.NET Framework 4.6.1以上
+Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">（开发过程中是以Fiddler 5.0版本为基准）</font>，同时要求.NET Framework 4.6.1以上
 # 下载安装
 #### 1、Exe文件
 下载执行dist中的[FPlug.exe](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/dist/FPlug.exe)文件
@@ -43,7 +43,7 @@ Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">(开�
 　　(3)、可以是URL的任意部分，如：com/test/i  
 　　4)、支持正则表达式，如：\S*.example.com  
 2、文件路径字段：  
-　　(1)、仅支持正确的全路径(如果路径不正确将会有错误弹框！！！)  
+　　(1)、仅支持正确的全路径（如果路径不正确将会有错误弹框！！！）  
 　　(2)、如果映射的URL中带有callback字段，则会自动替换文件里面第一个callback字符串  
 3、示例：
 ![blockchain](https://github.com/Ke1992/FPlug/blob/master/guide/file.gif "文件映射")
@@ -76,7 +76,7 @@ Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">(开�
 1、开启后会增加日志面板，同时会主动往网页中注入JS脚本，修改console方法，捕获日志后发起POST请求  
 2、日志输出的顺序请以序号为准  
 3、开启后之前已经打开的页面需要刷新才能捕获日志  
-4、仅会往Content-Type包含text/html，并且，以&lt;!DOCTYPE或者&lt;!doctype开头的请求中注入脚本  
+4、仅会往Content-Type包含text/html，并且，包含&lt;html&gt;或者&lt;html 的请求中注入脚本  
 5、示例：  
 ![blockchain](https://github.com/Ke1992/FPlug/blob/master/guide/console.gif "console日志")
 ### UA模拟
@@ -86,7 +86,7 @@ Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">(开�
 ### JS注入
 1、开启后，在输入框中键入JavaScript脚本，然后点击发送，会主动向代理中的网页注入对应的脚本  
 2、开启后之前已经打开的页面需要刷新才能响应注入的脚本  
-3、仅对Content-Type包含text/html，并且，以&lt;!DOCTYPE或者&lt;!doctype开头的请求有效  
+3、仅对Content-Type包含text/html，并且，包含&lt;html&gt;或者&lt;html 的请求有效  
 4、会每隔2S请求一次www.example.com，请忽略！！！  
 5、示例：  
 ![blockchain](https://github.com/Ke1992/FPlug/blob/master/guide/invade.gif "JS注入")
