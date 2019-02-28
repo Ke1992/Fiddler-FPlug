@@ -96,12 +96,13 @@
                         <Label Foreground="#FF808080" Padding="5,0,0,0" Visibility="{Binding Path=Download}">)</Label>
                     </WrapPanel>
                     <Label BorderBrush="#FFE0E0E0" BorderThickness="0,1,0,0"></Label>
-                    <!-- serverip、cache、console -->
+                    <!-- serverip、cache、vConsole、console -->
                     <Grid Margin="0,10,0,20">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="33*"/>
-                            <ColumnDefinition Width="33*"/>
-                            <ColumnDefinition Width="33*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
                         </Grid.ColumnDefinitions>
 
                         <StackPanel x:Name="tool_serverip" Grid.Column="0" VerticalAlignment="Top">
@@ -124,7 +125,17 @@
                                 <TextBlock TextTrimming="CharacterEllipsis" Text="禁止缓存" ToolTip="禁止缓存"></TextBlock>
                             </Label>
                         </StackPanel>
-                        <StackPanel x:Name="tool_console" Grid.Column="2" VerticalAlignment="Top">
+                        <StackPanel x:Name="tool_vconsole" Grid.Column="2" VerticalAlignment="Top">
+                            <Label Template="{StaticResource tool_ellipse}" HorizontalAlignment="Center"></Label>
+                            <Canvas Width="20" Height="20" Margin="0,-44,0,0">
+                                <Path Fill="{Binding Path=IconColor}" Data="M7.104 14.103l0.807-1.129-0.884-0.884-1.129 0.807c-0.209-0.117-0.434-0.21-0.669-0.277l-0.228-1.369h-1.25l-0.228 1.369c-0.236 0.067-0.46 0.16-0.669 0.277l-1.129-0.807-0.884 0.884 0.807 1.129c-0.117 0.209-0.21 0.434-0.277 0.669l-1.369 0.228v1.25l1.369 0.228c0.067 0.236 0.16 0.46 0.277 0.669l-0.807 1.129 0.884 0.884 1.129-0.807c0.209 0.117 0.434 0.21 0.669 0.277l0.228 1.369h1.25l0.228-1.369c0.236-0.067 0.46-0.16 0.669-0.277l1.129 0.807 0.884-0.884-0.807-1.129c0.117-0.209 0.21-0.434 0.277-0.669l1.369-0.228v-1.25l-1.369-0.228c-0.067-0.236-0.16-0.46-0.277-0.669zM4.375 16.875c-0.69 0-1.25-0.56-1.25-1.25s0.56-1.25 1.25-1.25 1.25 0.56 1.25 1.25-0.56 1.25-1.25 1.25zM20 7.5v-1.25l-1.316-0.239c-0.024-0.157-0.055-0.312-0.092-0.465l1.124-0.725-0.478-1.155-1.307 0.283c-0.082-0.135-0.17-0.266-0.264-0.393l0.762-1.1-0.884-0.884-1.1 0.762c-0.127-0.093-0.258-0.181-0.393-0.264l0.283-1.308-1.155-0.478-0.725 1.124c-0.153-0.037-0.308-0.068-0.465-0.092l-0.239-1.316h-1.25l-0.239 1.316c-0.157 0.024-0.312 0.055-0.465 0.092l-0.725-1.124-1.155 0.478 0.283 1.308c-0.135 0.082-0.266 0.17-0.393 0.264l-1.1-0.762-0.884 0.884 0.762 1.1c-0.093 0.127-0.181 0.258-0.264 0.393l-1.307-0.283-0.478 1.155 1.124 0.725c-0.037 0.153-0.068 0.307-0.092 0.465l-1.316 0.239v1.25l1.316 0.239c0.024 0.157 0.055 0.312 0.092 0.465l-1.124 0.725 0.478 1.155 1.308-0.283c0.082 0.135 0.17 0.266 0.264 0.393l-0.762 1.1 0.884 0.884 1.1-0.762c0.127 0.093 0.258 0.181 0.393 0.264l-0.283 1.307 1.155 0.478 0.725-1.124c0.153 0.037 0.307 0.068 0.465 0.092l0.239 1.316h1.25l0.239-1.316c0.157-0.024 0.312-0.055 0.465-0.092l0.725 1.124 1.155-0.478-0.283-1.307c0.135-0.082 0.266-0.17 0.393-0.264l1.1 0.762 0.884-0.884-0.762-1.1c0.093-0.127 0.181-0.258 0.264-0.393l1.307 0.283 0.478-1.155-1.124-0.725c0.037-0.153 0.068-0.307 0.092-0.465l1.316-0.239zM13.125 9.594c-1.502 0-2.719-1.217-2.719-2.719s1.217-2.719 2.719-2.719 2.719 1.217 2.719 2.719c0 1.502-1.217 2.719-2.719 2.719z" />
+                            </Canvas>
+                            <Label MouseLeftButtonDown="changeToolEnable" Tag="vconsole" Style="{StaticResource tool_style_btn_label}"></Label>
+                            <Label Style="{StaticResource tool_style_title}">
+                                <TextBlock TextTrimming="CharacterEllipsis" Text="vConsole注入" ToolTip="vConsole日志"></TextBlock>
+                            </Label>
+                        </StackPanel>
+                        <StackPanel x:Name="tool_console" Grid.Column="3" VerticalAlignment="Top">
                             <Label Template="{StaticResource tool_ellipse}" HorizontalAlignment="Center"></Label>
                             <Canvas Width="20" Height="20" Margin="0,-44,0,0">
                                 <Path Fill="{Binding Path=IconColor}" Data="M20 11.25v-1.25h-3.775c-0.114-1.42-0.621-2.715-1.4-3.755h3.163l1.368-5.473-1.213-0.303-1.132 4.527h-3.412c-0.017-0.014-0.035-0.027-0.053-0.040 0.131-0.381 0.202-0.789 0.202-1.215 0-2.066-1.679-3.74-3.75-3.74s-3.75 1.675-3.75 3.74c0 0.425 0.071 0.834 0.202 1.215-0.018 0.013-0.035 0.027-0.053 0.040h-3.412l-1.132-4.527-1.213 0.303 1.368 5.473h3.163c-0.779 1.039-1.285 2.335-1.4 3.755h-3.775v1.25h3.777c0.074 0.892 0.303 1.735 0.657 2.495h-2.422l-1.368 5.473 1.213 0.303 1.132-4.527h2.194c1.146 1.524 2.879 2.495 4.818 2.495s3.671-0.971 4.818-2.495h2.194l1.132 4.527 1.213-0.303-1.368-5.473h-2.422c0.354-0.761 0.583-1.603 0.657-2.495h3.777z" />

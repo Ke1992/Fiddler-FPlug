@@ -46,6 +46,8 @@ namespace FPlug.Tools
             }
             //FILE映射
             handleFileMapping(session);
+            //vConsole注入
+            handleVConsole(session);
             //console日志
             handleConsoleLogResponse(session);
             //JS注入
@@ -339,12 +341,15 @@ namespace FPlug.Tools
                 //是否是html格式
                 if (judgeContentTypeIsHtml(session.ResponseHeaders["Content-Type"].ToString()))
                 {
+                    //获取原始响应包
                     string responseBody = session.GetResponseBodyAsString();
+                    //获取最新的响应包
+                    string newResponseBody = addScriptToDocument(responseBody, StaticResourcesTool.consoleScriptStr);
 
-                    //是否是document
-                    if (judgeIsDocument(responseBody))
+                    //注入了脚本
+                    if (newResponseBody != null)
                     {
-                        session.utilSetResponseBody(StaticResourcesTool.consoleScriptStr + responseBody);
+                        session.utilSetResponseBody(newResponseBody);
                     }
                 }
             }
@@ -385,13 +390,15 @@ namespace FPlug.Tools
                     //判断是否是html格式
                     if (judgeContentTypeIsHtml(session.ResponseHeaders["Content-Type"].ToString()))
                     {
+                        //获取原始响应包
                         string responseBody = session.GetResponseBodyAsString();
+                        //获取最新的响应包
+                        string newResponseBody = addScriptToDocument(responseBody, StaticResourcesTool.invadeRequestStr);
 
-                        //是否是document
-                        if (judgeIsDocument(responseBody))
+                        //注入了脚本
+                        if (newResponseBody != null)
                         {
-                            //添加JS注入Request端脚本
-                            session.utilSetResponseBody(responseBody + StaticResourcesTool.invadeRequestStr);
+                            session.utilSetResponseBody(newResponseBody);
                         }
                     }
                 }
@@ -409,6 +416,27 @@ namespace FPlug.Tools
                 //后增加
                 session.ResponseHeaders.Add("Pragma", "no-cache");
                 session.ResponseHeaders.Add("Cache-Control", "no-cache");
+            }
+        }
+        //vConsole注入
+        private static void handleVConsole(Session session)
+        {
+            if (Main.mainData.getToolByType("vconsole").Enable)
+            {
+                //是否是html格式
+                if (judgeContentTypeIsHtml(session.ResponseHeaders["Content-Type"].ToString()))
+                {
+                    //获取原始响应包
+                    string responseBody = session.GetResponseBodyAsString();
+                    //获取最新的响应包
+                    string newResponseBody = addScriptToDocument(responseBody, StaticResourcesTool.vConsoleStr);
+
+                    //注入了脚本
+                    if (newResponseBody != null)
+                    {
+                        session.utilSetResponseBody(newResponseBody);
+                    }
+                }
             }
         }
         #endregion
@@ -505,24 +533,28 @@ namespace FPlug.Tools
             return contentType.ToLower().IndexOf("text/html") >= 0;
         }
         //判断是否是document
-        private static bool judgeIsDocument(string body)
+        private static string addScriptToDocument(string body, string script)
         {
-            //如果内容长度不够，则直接返回
-            if(body.Length <= "<!DOCTYPE".Length)
+            //判断是否包含<html>
+            int index = body.IndexOf("<html>");
+            if (index >= 0)
             {
-                return false;
+                //注入脚本
+                body = body.Insert(index, script);
+                return body;
             }
 
-            string doctype = body.Substring(0, "<!DOCTYPE".Length);
+            //判断是否包含<html 
+            index = body.IndexOf("<html ");
+            if(index >= 0)
+            {
+                //注入脚本
+                body = body.Insert(index, script);
+                return body;
+            }
 
-            if (doctype == "<!DOCTYPE" || doctype == "<!doctype")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            //什么都不包含，则返回null
+            return null;
         }
         #endregion
     }

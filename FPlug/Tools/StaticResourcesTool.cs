@@ -6,7 +6,7 @@
         public static string version = "v1.0.2";
 
         //工具key数组
-        public static string[] keys = new string[] { "cache", "console", "serverip", "useragent", "invade" };
+        public static string[] keys = new string[] { "serverip", "cache", "vconsole", "console", "useragent", "invade" };
 
         //查询版本URL
         public static string versionUrlStr = "https://raw.githubusercontent.com/Ke1992/FPlug/master/version.js";
@@ -30,5 +30,11 @@
 
         //JS注入--响应端代码，用来及时清除script标签，防止过多
         public static string invadeResponseStr = "document.body && document.body.removeChild(document.getElementById('{0}'));";
+
+        //vConsole注入
+        public static string vConsoleStr = "<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/vConsole/3.3.0/vconsole.min.js'></script>" +
+            "<script type='text/javascript'>" +
+                "VConsole && new VConsole();" +
+            "</script>";
     }
 }
