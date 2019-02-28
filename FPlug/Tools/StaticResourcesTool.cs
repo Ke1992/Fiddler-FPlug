@@ -3,7 +3,7 @@
     public class StaticResourcesTool
     {
         //当前版本
-        public static string version = "v1.0.2";
+        public static string version = "v1.0.3";
 
         //工具key数组
         public static string[] keys = new string[] { "serverip", "cache", "vconsole", "console", "useragent", "invade" };
@@ -18,7 +18,7 @@
             "User-Agent: Fiddler\n" +
             "Accept-Language: zh-CN,zh;q=0.8\n\n";
 
-        //脚本注入到html页面中，抓取页面的console输出，发出POST请求，FIddler捕获以后打印
+        //脚本注入到html页面中，抓取页面的console输出，发出POST请求，Fiddler捕获以后打印
         public static string consoleScriptStr = "<!DOCTYPE HTML><script type='text/javascript'>" +
             "(function(){window.consoleTotalNum=0;window.console.logOld=window.console.log;window.console.log=function(){window.consoleTotalNum++;window.console.logOld.apply(this,arguments);sendLogToFiddler('log',arguments)};window.console.errorOld=window.console.error;window.console.error=function(){window.consoleTotalNum++;window.console.errorOld.apply(this,arguments);sendLogToFiddler('error',arguments)};window.console.warnOld=window.console.warn;window.console.warn=function(){window.consoleTotalNum++;window.console.warnOld.apply(this,arguments);sendLogToFiddler('warn',arguments)};function sendLogToFiddler(type,param){if(!param.length){return false}var data='',xhr=new XMLHttpRequest(),url=location.protocol+'//www.example.com',nowurl=location.protocol+'//'+location.host+location.pathname;for(var i=0,len=param.length;i<len;i++){if(param[i]&&Object.prototype.toString.call(param[i])=='[object Object]'){data+=JSON.stringify(param[i])+'   '}else if(param[i]){data+=param[i].toString()+'   '}}xhr.open('POST',url+'?serial='+window.consoleTotalNum+'&type='+type+'&nowurl='+nowurl,true);xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');xhr.send(data.trim())}}());" +
             "</script>";
