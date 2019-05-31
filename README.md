@@ -1,5 +1,5 @@
 # FPlug
-FPlug是一个Fiddler插件，提供Web开发中可能使用到的一系列工具，[插件开发指南](https://github.com/Ke1992/Fiddler-Plug-Example)
+FPlug是一个Fiddler插件，提供Web开发中可能使用到的一系列工具 ([插件开发指南](https://github.com/Ke1992/Fiddler-Plug-Example))
 # 版本
 v1.0.3 ([更新日志](https://github.com/Ke1992/Fiddler-FPlug/blob/master/CHANGELOG.md))
 # 环境要求
