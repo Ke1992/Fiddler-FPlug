@@ -17,7 +17,6 @@ Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">（开
 * 禁止缓存
 * vConsole注入
 * console日志
-* UA模拟
 * JS注入
 # 基础配置说明
 ### 插件启用/关闭
