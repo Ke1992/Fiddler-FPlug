@@ -9,7 +9,7 @@
         public static string responseCodeKey = "Response-Code";
 
         //工具key数组
-        public static string[] keys = new string[] { "serverip", "cache", "vconsole", "console", "useragent", "invade" };
+        public static string[] keys = new string[] { "serverip", "cache", "vconsole", "console", "invade" };
 
         //Header替换Key数组
         public static string[] headerKeys = new string[] { "Custom", responseCodeKey, "Date", "Accept", "Cookie", "Referer", "Expires", "User-Agent", "Content-Type", "Cache-Control", "Accept-Encoding", "Accept-Language", "Content-Encoding", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials" };

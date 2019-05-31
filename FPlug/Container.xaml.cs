@@ -67,11 +67,6 @@ namespace FPlug
                     initItemToUI();
                 }
             }
-
-            if (tag == "tools")
-            {
-                this.tool_useragent_content.Focus();
-            }
         }
         #endregion
 
@@ -107,11 +102,6 @@ namespace FPlug
                 //切换属性值
                 tabModel.ConsoleShow = !tabModel.ConsoleShow;
             }
-        }
-        //useragent输入监听事件
-        private void useragentInput(object sender, KeyEventArgs e)
-        {
-            Main.mainData.changeItemContentByType("useragent", this.tool_useragent_content.Text.ToString());
         }
         //日志筛选事件
         private void changeConsoleType(object sender, MouseButtonEventArgs e)
@@ -219,12 +209,6 @@ namespace FPlug
             for (int i = 0, len = keys.Length; i < len; i++)
             {
                 (this.FindName("tool_" + keys[i]) as Panel).DataContext = tools[keys[i]] as ToolModel;
-
-                //UA塞入内容
-                if (keys[i] == "useragent")
-                {
-                    this.tool_useragent_content.Text = (tools[keys[i]] as ToolModel).Content;
-                }
             }
         }
         //根据类型筛选日志

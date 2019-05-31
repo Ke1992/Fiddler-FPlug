@@ -29,8 +29,6 @@ namespace FPlug.Tools
             handleHttpsToHttp(session);
             //HOST映射
             handleHostMapping(session);
-            //UA模拟
-            replaceUserAgent(session);
             //JS注入--Request端
             invadeJavaScriptRequest(session);
             //禁止缓存
@@ -154,17 +152,6 @@ namespace FPlug.Tools
                     session.bypassGateway = true;
                     break;
                 }
-            }
-        }
-        //UA模拟
-        private static void replaceUserAgent(Session session)
-        {
-            ToolModel userAgent = Main.mainData.getToolByType("useragent");
-
-            if (userAgent.Enable && userAgent.Content.Length > 0)
-            {
-                session.RequestHeaders.Remove("User-Agent");
-                session.RequestHeaders.Add("User-Agent", userAgent.Content);
             }
         }
         //console日志--Request端

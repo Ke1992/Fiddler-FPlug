@@ -164,31 +164,6 @@
                             </Label>
                         </StackPanel>
                     </Grid>
-                    <!-- UA模拟 -->
-                    <Grid x:Name="tool_useragent" Margin="10,10,10,20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="44"/>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="100*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" Template="{StaticResource tool_ellipse}" VerticalAlignment="Center"></Label>
-                        <Canvas Grid.Column="0" Width="20" Height="20">
-                            <Path Fill="{Binding Path=IconColor}" Data="M15 13.75v-7.5h-1.25v7.5h-3.125l3.75 3.75 3.75-3.75z" />
-                            <Path Fill="{Binding Path=IconColor}" Data="M6.25 5v3.75h-3.75v-3.75h3.75zM7.5 3.75h-6.25v6.25h6.25v-6.25z" />
-                            <Path Fill="{Binding Path=IconColor}" Data="M1.25 12.5h1.875v1.25h-1.875v-1.25z" />
-                            <Path Fill="{Binding Path=IconColor}" Data="M3.75 12.5h1.875v1.25h-1.875v-1.25z" />
-                            <Path Fill="{Binding Path=IconColor}" Data="M6.25 12.5h1.25v1.875h-1.25v-1.875z" />
-                            <Path Fill="{Binding Path=IconColor}" Data="M1.25 16.875h1.25v1.875h-1.25v-1.875z" />
-                            <Path Fill="{Binding Path=IconColor}" Data="M3.125 17.5h1.875v1.25h-1.875v-1.25z" />
-                            <Path Fill="{Binding Path=IconColor}" Data="M5.625 17.5h1.875v1.25h-1.875v-1.25z" />
-                            <Path Fill="{Binding Path=IconColor}" Data="M1.25 14.375h1.25v1.875h-1.25v-1.875z" />
-                            <Path Fill="{Binding Path=IconColor}" Data="M6.25 15h1.25v1.875h-1.25v-1.875z" />
-                        </Canvas>
-                        <Label Grid.Column="0" MouseLeftButtonDown="changeToolEnable" Tag="useragent" Style="{StaticResource tool_style_btn_label}" Margin="0"></Label>
-                        <Label Grid.Column="1" Style="{StaticResource tool_style_title_long}">UA模拟</Label>
-                        <TextBox x:Name="tool_useragent_content" KeyUp="useragentInput" Grid.Column="2" Style="{StaticResource tool_style_input}"></TextBox>
-                    </Grid>
                     <!-- JS注入 -->
                     <Grid x:Name="tool_invade" Margin="10,5,10,20">
                         <Grid.ColumnDefinitions>
