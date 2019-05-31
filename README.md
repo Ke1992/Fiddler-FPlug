@@ -84,10 +84,6 @@ Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">（开
 4、仅会往Content-Type包含text/html，并且，包含&lt;html&gt;或者&lt;html 的请求中注入脚本  
 5、示例：  
 ![blockchain](https://github.com/Ke1992/FPlug/blob/master/guide/console.gif "console日志")
-### UA模拟
-1、开启后，如果输入框中有值，则会主动替换请求的User-Agent  
-2、示例：
-![blockchain](https://github.com/Ke1992/FPlug/blob/master/guide/useragent.gif "UA模拟")
 ### JS注入
 1、开启后，在输入框中键入JavaScript脚本，然后点击发送，会主动向代理中的网页注入对应的脚本  
 2、开启后之前已经打开的页面需要刷新才能响应注入的脚本  
