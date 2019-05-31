@@ -76,6 +76,24 @@
                 <StackPanel x:Name="https" Margin="0,0,0,20"></StackPanel>
             </ScrollViewer>
         </Grid>
+        <!-- HEADER区域 -->
+        <Grid Grid.Column="0" Margin="30,0" Visibility="{Binding Path=HeaderWrap}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="100*" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0">
+                <Label Style="{StaticResource main_style_title}">HEADER 替换</Label>
+                <Label MouseLeftButtonDown="showExplainAlertUI" Tag="header" Template="{StaticResource main_guide}" HorizontalAlignment="Left"></Label>
+                <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Style="{StaticResource main_style_operation}" MouseLeftButtonDown="addItem">新增</Label>
+                    <Label Style="{StaticResource main_style_operation_disable}" MouseLeftButtonDown="disabledAllItem">全禁</Label>
+                </WrapPanel>
+            </DockPanel>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="header" Margin="0,0,0,20"></StackPanel>
+            </ScrollViewer>
+        </Grid>
         <!-- TOOL区域 -->
         <Grid Grid.Column="0" Margin="30,0" Visibility="{Binding Path=ToolsWrap}">
             <Grid.RowDefinitions>
@@ -89,7 +107,7 @@
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <Label Foreground="#FF808080" Padding="0,0,5,15">当前版本 v1.0.3，最新版本</Label>
+                        <Label Foreground="#FF808080" Padding="0,0,5,15">当前版本 v1.0.4，最新版本</Label>
                         <Label Foreground="Red" Padding="0,0,0,15" Content="{Binding Path=Version}"></Label>
                         <Label Foreground="#FF808080" Padding="5,0" Visibility="{Binding Path=Download}">(最新版下载地址：</Label>
                         <Label MouseLeftButtonDown="goToDownloadPage" Foreground="Red" Padding="0" Cursor="Hand" Visibility="{Binding Path=Download}">https://github.com/Ke1992/FPlug</Label>
@@ -195,9 +213,10 @@
                     <Label Height="40" VerticalContentAlignment="Center" Foreground="#FF808080" FontWeight="Bold" FontSize="14" BorderBrush="#FFE0E0E0" BorderThickness="0,1,0,0" HorizontalContentAlignment="Center">session面板说明</Label>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="33*"/>
-                            <ColumnDefinition Width="33*"/>
-                            <ColumnDefinition Width="33*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
                         </Grid.ColumnDefinitions>
                         
                         <WrapPanel Grid.Column="0" HorizontalAlignment="Center">
@@ -211,6 +230,10 @@
                         <WrapPanel Grid.Column="2" HorizontalAlignment="Center">
                             <Rectangle Fill="#FFFF9933" Width="20" Height="20"/>
                             <Label Style="{StaticResource tool_style_tips}">HTTPS转换</Label>
+                        </WrapPanel>
+                        <WrapPanel Grid.Column="3" HorizontalAlignment="Center">
+                            <Rectangle Fill="#FF4CAF50" Width="20" Height="20"/>
+                            <Label Style="{StaticResource tool_style_tips}">HEADER替换</Label>
                         </WrapPanel>
                     </Grid>
                 </StackPanel>
@@ -289,6 +312,14 @@
                     <Path Fill="{Binding Path=HttpsTabColor}" Data="M15.333 24.133l-2.267 2.267c-2.133 2-5.333 2-7.467 0s-2.133-5.467-0.133-7.467l4-4c0.133-0.133 0.4-0.4 0.533-0.533 1.2-0.8 2.533-1.2 4-1.067 1.467 0.267 2.667 0.933 3.467 2.133 0.4 0.533 1.333 0.667 1.867 0.267s0.667-1.333 0.267-1.867c-1.333-1.733-3.2-2.8-5.2-3.067-2-0.4-4.133 0.133-5.867 1.467-0.267 0.267-0.533 0.533-0.8 0.8l-4 4c-3.067 3.2-2.933 8.267 0.133 11.333 1.6 1.467 3.6 2.267 5.6 2.267s4-0.8 5.6-2.267l2.267-2.267c0.533-0.533 0.533-1.333 0-1.867s-1.467-0.667-2-0.133z" />
                 </Canvas>
                 <Label Style="{StaticResource nav_style_title}" Foreground="{Binding Path=HttpsTabColor}">HTTPS</Label>
+            </StackPanel>
+            <Label Template="{StaticResource nav_ellipsis}"></Label>
+            <!-- HEADER替换 -->
+            <StackPanel MouseLeftButtonDown="changeTabByTag" Tag="header" Style="{StaticResource nav_style_bg}">
+                <Canvas Width="32" Height="32">
+                    <Path Fill="{Binding Path=HeaderTabColor}" Data="M0 32c4-12 14.469-32 32-32-8.219 6.594-12 22-18 22s-6 0-6 0l-6 10h-2z" />
+                </Canvas>
+                <Label Style="{StaticResource nav_style_title}" Foreground="{Binding Path=HeaderTabColor}">HEADER</Label>
             </StackPanel>
             <Label Template="{StaticResource nav_ellipsis}"></Label>
             <!-- 工具库 -->

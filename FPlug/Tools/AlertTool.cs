@@ -48,13 +48,24 @@ namespace FPlug.Tools
             {
                 HttpsAlertUI httpsAlertUI = new HttpsAlertUI(parentIndex, index, handleType);
                 window.Content = httpsAlertUI;
+                //重置一下高度
+                window.Height = 260 + 30;
                 //自动聚焦
                 httpsAlertUI.url.Focus();
+            }
+            else if (type == "header")
+            {
+                HeaderAlertUI headerAlertUI = new HeaderAlertUI(parentIndex, index, handleType);
+                window.Content = headerAlertUI;
+                //重置一下高度
+                window.Height = 460 + 30;
+                //自动聚焦
+                headerAlertUI.url.Focus();
             }
             //显示窗体
             window.ShowDialog();
         }
-        
+
         //显示说明弹框
         public static void showExplainAlertUI(string type)
         {
@@ -70,6 +81,10 @@ namespace FPlug.Tools
             else if (type == "https")
             {
                 title = "HTTPS 转 HTTP";
+            }
+            else if (type == "header")
+            {
+                title = "HEADER替换";
             }
             else if (type == "tools")
             {

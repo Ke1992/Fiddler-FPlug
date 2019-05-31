@@ -11,7 +11,8 @@ namespace FPlug.Models
         public string type = "host";
         //全部配置数据
         private Dictionary<string, ArrayList> data;
-        public Dictionary<string, ArrayList> Data {
+        public Dictionary<string, ArrayList> Data
+        {
             get
             {
                 return data;
@@ -112,7 +113,7 @@ namespace FPlug.Models
             //重新写入文件
             DataTool.writeConfigToFile();
         }
-        
+
         //变更Item的Enable数据
         public void changeItemEnableByIndex(int index)
         {
@@ -121,7 +122,7 @@ namespace FPlug.Models
 
             //变更状态
             item.Enable = !item.Enable;
-            
+
             //重新写入文件
             DataTool.writeConfigToFile();
         }
@@ -131,7 +132,7 @@ namespace FPlug.Models
         {
             ArrayList items = data[type] as ArrayList;
 
-            for(int i=0, len = items.Count; i < len; i++)
+            for (int i = 0, len = items.Count; i < len; i++)
             {
                 ItemModel item = items[i] as ItemModel;
 
@@ -152,7 +153,7 @@ namespace FPlug.Models
             items.RemoveAt(index);
 
             //遍历修改下标值
-            for(int i = 0, len = items.Count; i < len; i++)
+            for (int i = 0, len = items.Count; i < len; i++)
             {
                 ItemModel item = items[i] as ItemModel;
                 item.Index = i;
@@ -170,7 +171,7 @@ namespace FPlug.Models
             ArrayList items = data[type] as ArrayList;
 
             //第一个数据
-            if (index == 0 && moveType == "up")
+            if (index == 0 && (moveType == "up" || moveType == "top"))
             {
                 return;
             }
@@ -184,13 +185,21 @@ namespace FPlug.Models
             //移动数据
             if (moveType == "up")
             {
+                //上移
                 items.Insert(index - 1, items[index]);
                 items.RemoveAt(index + 1);
             }
-            else
+            else if (moveType == "down")
             {
+                //下移
                 items.Insert(index, items[index + 1]);
                 items.RemoveAt(index + 2);
+            }
+            else
+            {
+                //置顶
+                items.Insert(0, items[index]);
+                items.RemoveAt(index + 1);
             }
 
             //遍历修改下标值
@@ -214,7 +223,7 @@ namespace FPlug.Models
             ArrayList items = data[type] as ArrayList;
             return (items[parentIndex] as ItemModel).Rules as ArrayList;
         }
-        
+
         //新增Rule数据
         public T addRuleToItem<T>(int parentIndex, JObject param)
         {
@@ -232,9 +241,6 @@ namespace FPlug.Models
 
                 //新建数据
                 rule = new HostModel(parentIndex, rules.Count, true, ip, port, url);
-
-                //添加数据
-                rules.Add(rule);
             }
             else if (type == "file")
             {
@@ -244,9 +250,6 @@ namespace FPlug.Models
 
                 //新建数据
                 rule = new FileModel(parentIndex, rules.Count, true, url, path);
-
-                //添加数据
-                rules.Add(rule);
             }
             else if (type == "https")
             {
@@ -255,11 +258,22 @@ namespace FPlug.Models
 
                 //新建数据
                 rule = new HttpsModel(parentIndex, rules.Count, true, url);
-
-                //添加数据
-                rules.Add(rule);
             }
-            
+            else if (type == "header")
+            {
+                //获取所有的参数
+                string type = param["type"].ToString();
+                string url = param["url"].ToString();
+                string key = param["key"].ToString();
+                string value = param["value"].ToString();
+
+                //新建数据
+                rule = new HeaderModel(parentIndex, rules.Count, true, type, url, key, value);
+            }
+
+            //添加数据
+            rules.Add(rule);
+
             //重新写入文件
             DataTool.writeConfigToFile();
 
@@ -304,6 +318,16 @@ namespace FPlug.Models
                 HttpsModel rule = rules[index] as HttpsModel;
                 //更新数据
                 rule.Url = param["url"].ToString();
+            }
+            else if (type == "header")
+            {
+                //获取规则
+                HeaderModel rule = rules[index] as HeaderModel;
+                //更新数据
+                rule.Type = param["type"].ToString();
+                rule.Url = param["url"].ToString();
+                rule.Key = param["key"].ToString();
+                rule.Value = param["value"].ToString();
             }
 
             //重新写入文件
@@ -350,7 +374,7 @@ namespace FPlug.Models
             ArrayList rules = (items[parentIndex] as ItemModel).Rules as ArrayList;
 
             //第一个数据
-            if (index == 0 && moveType == "up")
+            if (index == 0 && (moveType == "up" || moveType == "top"))
             {
                 return;
             }
@@ -364,13 +388,21 @@ namespace FPlug.Models
             //移动数据
             if (moveType == "up")
             {
+                //上移
                 rules.Insert(index - 1, rules[index]);
                 rules.RemoveAt(index + 1);
             }
-            else
+            else if (moveType == "down")
             {
+                //下移
                 rules.Insert(index, rules[index + 1]);
                 rules.RemoveAt(index + 2);
+            }
+            else
+            {
+                //置顶
+                rules.Insert(0, rules[index]);
+                rules.RemoveAt(index + 1);
             }
 
             //遍历修改下标值
@@ -451,7 +483,7 @@ namespace FPlug.Models
         public string getJavaScriptFormInvadeData()
         {
             //如果没有数据，直接返回""
-            if(invadeData.Count <= 0)
+            if (invadeData.Count <= 0)
             {
                 return "";
             }

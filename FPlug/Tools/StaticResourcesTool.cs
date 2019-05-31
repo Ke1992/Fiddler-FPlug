@@ -3,10 +3,16 @@
     public class StaticResourcesTool
     {
         //当前版本
-        public static string version = "v1.0.3";
+        public static string version = "v1.0.4";
+
+        //Header替换Coded的Key
+        public static string responseCodeKey = "Response-Code";
 
         //工具key数组
         public static string[] keys = new string[] { "serverip", "cache", "vconsole", "console", "useragent", "invade" };
+
+        //Header替换Key数组
+        public static string[] headerKeys = new string[] { "Custom", responseCodeKey, "Date", "Accept", "Cookie", "Referer", "Expires", "User-Agent", "Content-Type", "Cache-Control", "Accept-Encoding", "Accept-Language", "Content-Encoding", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials" };
 
         //查询版本URL
         public static string versionUrlStr = "https://raw.githubusercontent.com/Ke1992/FPlug/master/version.js";

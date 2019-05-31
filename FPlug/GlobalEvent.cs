@@ -66,7 +66,7 @@ namespace FPlug
                 //删除对应UI
                 Main.container.deleteItemFromUI(index);
             }
-            else if (type == "up" || type == "down")
+            else if (type == "up" || type == "down" || type == "top")
             {
                 //移动对应的数据 
                 Main.mainData.moveItemByType(index, type);
@@ -121,7 +121,7 @@ namespace FPlug
                 //显示弹框
                 AlertTool.showRuleAlertUI(parentIndex, index, "copy");
             }
-            else if (type == "up" || type == "down")
+            else if (type == "up" || type == "down" || type == "top")
             {
                 //移动对应的数据 
                 Main.mainData.moveRuleByType(parentIndex, index, type);

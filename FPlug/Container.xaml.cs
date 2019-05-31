@@ -167,6 +167,7 @@ namespace FPlug
             result.Add("host", true);
             result.Add("file", false);
             result.Add("https", false);
+            result.Add("header", false);
             result.Add("tools", false);
             result.Add("console", false);
 
@@ -267,34 +268,12 @@ namespace FPlug
             //创建UI对象
             Label label = new Label();
 
-            //根据类型初始化属性
-            if (type == "host")
-            {
-                //设置UI对象属性
-                label.Template = Resources["main_wrap_host"] as ControlTemplate;
-                label.DataContext = item;
+            //设置UI对象属性
+            label.Template = Resources["main_wrap_" + type] as ControlTemplate;
+            label.DataContext = item;
 
-                //添加UI
-                this.host.Children.Add(label);
-            }
-            else if (type == "file")
-            {
-                //设置UI对象属性
-                label.Template = Resources["main_wrap_file"] as ControlTemplate;
-                label.DataContext = item;
-
-                //添加UI
-                this.file.Children.Add(label);
-            }
-            else if (type == "https")
-            {
-                //设置UI对象属性
-                label.Template = Resources["main_wrap_https"] as ControlTemplate;
-                label.DataContext = item;
-
-                //添加UI
-                this.https.Children.Add(label);
-            }
+            //添加UI
+            (this.FindName(type) as StackPanel).Children.Add(label);
         }
 
         //删除Item控件
@@ -302,19 +281,11 @@ namespace FPlug
         {
             string type = Main.mainData.type;
 
-            //根据类型删除
-            if (type == "host")
-            {
-                this.host.Children.RemoveAt(index);
-            }
-            else if (type == "file")
-            {
-                this.file.Children.RemoveAt(index);
-            }
-            else if (type == "https")
-            {
-                this.https.Children.RemoveAt(index);
-            }
+            //根据type获取元素
+            StackPanel panel = this.FindName(type) as StackPanel;
+
+            //删除
+            panel.Children.RemoveAt(index);
         }
 
         //移动Item控件
@@ -322,26 +293,14 @@ namespace FPlug
         {
             string type = Main.mainData.type;
 
-            if (index <= 0 && moveType == "up")
+            if (index == 0 && (moveType == "up" || moveType == "top"))
             {
                 Fiddler.FiddlerApplication.DoNotifyUser("已在最顶部", "无法上移");
                 return;
             }
 
-            StackPanel panel = null;
-
-            if (type == "host")
-            {
-                panel = this.host;
-            }
-            else if (type == "file")
-            {
-                panel = this.file;
-            }
-            else if (type == "https")
-            {
-                panel = this.https;
-            }
+            //根据type获取元素
+            StackPanel panel = this.FindName(type) as StackPanel;
 
             if (index == panel.Children.Count - 1 && moveType == "down")
             {
@@ -361,41 +320,14 @@ namespace FPlug
         public void addRuleToUI(BaseModel model)
         {
             string type = Main.mainData.type;
+            //Item控件
+            Label item = (this.FindName(type) as StackPanel).Children[model.ParentIndex] as Label;
+
             //创建UI对象
             Label label = new Label();
-            //Item控件
-            Label item = null;
-
-            if (type == "host")
-            {
-                //设置UI对象属性
-                HostModel rule = model as HostModel;
-                label.Template = Resources["main_content_host"] as ControlTemplate;
-                label.DataContext = rule;
-
-                //获取对应Item控件
-                item = this.host.Children[rule.ParentIndex] as Label;
-            }
-            else if (type == "file")
-            {
-                //设置UI对象属性
-                FileModel rule = model as FileModel;
-                label.Template = Resources["main_content_file"] as ControlTemplate;
-                label.DataContext = rule;
-
-                //获取对应Item控件
-                item = this.file.Children[rule.ParentIndex] as Label;
-            }
-            else if (type == "https")
-            {
-                //设置UI对象属性
-                HttpsModel rule = model as HttpsModel;
-                label.Template = Resources["main_content_https"] as ControlTemplate;
-                label.DataContext = rule;
-
-                //获取对应Item控件
-                item = this.https.Children[rule.ParentIndex] as Label;
-            }
+            //设置UI对象属性
+            label.Template = Resources["main_content_" + type] as ControlTemplate;
+            label.DataContext = model;
 
             //首先执行一次ApplyTemplate，确保模板应用到了渲染树中
             item.ApplyTemplate();
@@ -410,23 +342,7 @@ namespace FPlug
         {
             string type = Main.mainData.type;
             //Item控件
-            Label item = null;
-
-            if (type == "host")
-            {
-                //获取对应Item控件
-                item = this.host.Children[parentIndex] as Label;
-            }
-            else if (type == "file")
-            {
-                //获取对应Item控件
-                item = this.file.Children[parentIndex] as Label;
-            }
-            else if (type == "https")
-            {
-                //获取对应Item控件
-                item = this.https.Children[parentIndex] as Label;
-            }
+            Label item = (this.FindName(type) as StackPanel).Children[parentIndex] as Label;
 
             //获取对应的内容
             StackPanel content = item.Template.FindName("content", item) as StackPanel;
@@ -439,30 +355,14 @@ namespace FPlug
         {
             string type = Main.mainData.type;
 
-            if (index <= 0 && moveType == "up")
+            if (index == 0 && (moveType == "up" || moveType == "top"))
             {
                 Fiddler.FiddlerApplication.DoNotifyUser("已在最顶部", "无法上移");
                 return;
             }
 
             //Item控件
-            Label item = null;
-
-            if (type == "host")
-            {
-                //获取对应Item控件
-                item = this.host.Children[parentIndex] as Label;
-            }
-            else if (type == "file")
-            {
-                //获取对应Item控件
-                item = this.file.Children[parentIndex] as Label;
-            }
-            else if (type == "https")
-            {
-                //获取对应Item控件
-                item = this.https.Children[parentIndex] as Label;
-            }
+            Label item = (this.FindName(type) as StackPanel).Children[parentIndex] as Label;
 
             //获取对应的内容
             StackPanel content = item.Template.FindName("content", item) as StackPanel;

@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="FPlug.AlertUI.HeaderAlertUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FPlug.AlertUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="500" Width="500" Height="460">
+
+    <!--#region 样式、模板资源 -->
+    <UserControl.Resources>
+        <ResourceDictionary Source="../GlobalStyle.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+    <!--#endregion-->
+
+    <StackPanel Background="White">
+        <Label Content="请填写相关配置" Style="{StaticResource alert_style_title}"></Label>
+        <StackPanel Style="{StaticResource alert_style_wrap}">
+            <Label Style="{StaticResource alert_style_name}">Type</Label>
+            <WrapPanel VerticalAlignment="Center" Margin="10,0,0,0">
+                <Ellipse Tag="req" MouseLeftButtonDown="handleTypeClickEvent" Style="{StaticResource alert_style_radio_check_no}"></Ellipse>
+                <Label x:Name="req" Template="{StaticResource alert_radio_checked}" Visibility="Collapsed"></Label>
+                <Label Content="req" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Foreground="#FF666666" Margin="5,0,0,0"/>
+            </WrapPanel>
+            <WrapPanel VerticalAlignment="Center" Margin="10,0,0,0">
+                <Ellipse Tag="res" MouseLeftButtonDown="handleTypeClickEvent" Style="{StaticResource alert_style_radio_check_no}"></Ellipse>
+                <Label x:Name="res" Template="{StaticResource alert_radio_checked}" Visibility="Collapsed"></Label>
+                <Label Content="res" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Foreground="#FF666666" Margin="5,0,0,0"/>
+            </WrapPanel>
+        </StackPanel>
+        <StackPanel Style="{StaticResource alert_style_wrap_textarea}">
+            <Label Style="{StaticResource alert_style_name}">URL</Label>
+            <TextBox x:Name="url" KeyDown="inputKeyDown" Style="{StaticResource alert_style_textarea}"/>
+        </StackPanel>
+        <StackPanel Style="{StaticResource alert_style_wrap}">
+            <Label Style="{StaticResource alert_style_name}">Key</Label>
+            <Label x:Name="comboxBoxFront" Template="{StaticResource alert_style_combox_box_front}"></Label>
+            <ComboBox x:Name="comboxBox" SelectionChanged="comboBoxSelectEvent" Style="{StaticResource alert_style_combox_box}"></ComboBox>
+        </StackPanel>
+        <StackPanel Style="{StaticResource alert_style_wrap}">
+            <Label Style="{StaticResource alert_style_name}">CusTom Key</Label>
+            <TextBox x:Name="customKey" KeyDown="inputKeyDown" IsEnabled="False" Style="{StaticResource alert_style_input}"/>
+        </StackPanel>
+        <StackPanel Style="{StaticResource alert_style_wrap}">
+            <Label Style="{StaticResource alert_style_name}">Value</Label>
+            <TextBox x:Name="value" KeyDown="inputKeyDown" Style="{StaticResource alert_style_input}"/>
+        </StackPanel>
+        <Label MouseLeftButtonDown="addHeaderRule" Style="{StaticResource alert_style_sure_btn}">确定</Label>
+    </StackPanel>
+</UserControl>
+

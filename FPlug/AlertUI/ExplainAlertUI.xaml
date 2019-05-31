@@ -135,6 +135,26 @@
                 <TextBlock Style="{StaticResource alert_style_explain}">4、结果范例展示：</TextBlock>
                 <Image Source="../Resources/ExplainImages/Tools/ToolsResult_2.jpg" Width="625"></Image>
             </StackPanel>
+            <StackPanel x:Name="header" Visibility="Collapsed">
+                <Label HorizontalContentAlignment="Center" Margin="0,10">HEADER替换说明</Label>
+                <TextBlock Style="{StaticResource alert_style_explain}">
+                1、Type字段：<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、req代表是Request端</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、res代表是Response端</Label>
+                </TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">
+                2、URL字段：<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、不局限于域名，以映射https://www.example.com/test/index.html为例</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、可以指定具体的Path，如：www.example.com/test</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (3)、可以是URL的任意部分，如：com/test/i</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (4)、支持正则表达式，如：\S*.example.com</Label>
+                </TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">3、Key字段：需要遵守格式如 User-Agent</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">4、配置示例：</TextBlock>
+                <Image Source="../Resources/ExplainImages/Header/HeaderResult_1.jpg" Width="625"></Image>
+                <TextBlock Style="{StaticResource alert_style_explain}">5、映射结果示例：</TextBlock>
+                <Image Source="../Resources/ExplainImages/Header/HeaderResult_2.jpg" Width="625"></Image>
+            </StackPanel>
             <Label Height="20"></Label>
         </StackPanel>
     </ScrollViewer>

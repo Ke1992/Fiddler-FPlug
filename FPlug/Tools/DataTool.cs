@@ -40,11 +40,11 @@ namespace FPlug.Tools
             }
             catch (Exception e)
             {
-                Fiddler.FiddlerApplication.Log.LogString("FPlug出现错误(readConfigFromFile函数)：" + e.ToString());
+                FiddlerApplication.Log.LogString("FPlug出现错误(readConfigFromFile函数)：" + e.ToString());
                 return null;
             }
         }
-        
+
         //备份配置文件
         private static void backupConfigFile()
         {
@@ -87,7 +87,7 @@ namespace FPlug.Tools
             }
             catch (Exception e)
             {
-                Fiddler.FiddlerApplication.Log.LogString("FPlug出现错误(backupConfigFile函数)：" + e.ToString());
+                FiddlerApplication.Log.LogString("FPlug出现错误(backupConfigFile函数)：" + e.ToString());
             }
         }
         #endregion
@@ -97,17 +97,18 @@ namespace FPlug.Tools
         private static JObject formatConfigData()
         {
             JObject data = new JObject();
-            
+
             //添加骨架
             data.Add("enable", Main.mainData.getEnable());
             data.Add("host", formatItemData("host"));
             data.Add("file", formatItemData("file"));
             data.Add("https", formatItemData("https"));
+            data.Add("header", formatItemData("header"));
             data.Add("tools", formatToolData());
 
             return data;
         }
-        
+
         //格式化Item数据
         private static JArray formatItemData(string type)
         {
@@ -130,47 +131,53 @@ namespace FPlug.Tools
             //返回数据
             return result;
         }
-        
-        //格式化Host数据
+
+        //格式化Rule数据
         private static JArray formatRuleData(ArrayList rules, string type)
         {
             JArray result = new JArray();
 
             for (int i = 0, len = rules.Count; i < len; i++)
             {
+                //生成Json数据
+                JObject temp = new JObject();
+
                 if (type == "host")
                 {
                     HostModel rule = rules[i] as HostModel;
-                    //生成Json数据
-                    JObject temp = new JObject();
+                    //填充数据
                     temp.Add("enable", rule.Enable);
                     temp.Add("ip", rule.IP);
                     temp.Add("port", rule.Port);
                     temp.Add("url", rule.Url);
-                    //填充进数组中
-                    result.Add(temp);
                 }
                 else if (type == "file")
                 {
                     FileModel rule = rules[i] as FileModel;
-                    //生成Json数据
-                    JObject temp = new JObject();
+                    //填充数据
                     temp.Add("enable", rule.Enable);
                     temp.Add("url", rule.Url);
                     temp.Add("path", rule.Path);
-                    //填充进数组中
-                    result.Add(temp);
                 }
-                else if(type == "https")
+                else if (type == "https")
                 {
                     HttpsModel rule = rules[i] as HttpsModel;
-                    //生成Json数据
-                    JObject temp = new JObject();
+                    //填充数据
                     temp.Add("enable", rule.Enable);
                     temp.Add("url", rule.Url);
-                    //填充进数组中
-                    result.Add(temp);
                 }
+                else if (type == "header")
+                {
+                    HeaderModel rule = rules[i] as HeaderModel;
+                    //填充数据
+                    temp.Add("enable", rule.Enable);
+                    temp.Add("type", rule.Type);
+                    temp.Add("url", rule.Url);
+                    temp.Add("key", rule.Key);
+                    temp.Add("value", rule.Value);
+                }
+                //填充进数组中
+                result.Add(temp);
             }
 
             return result;
@@ -188,7 +195,7 @@ namespace FPlug.Tools
             string[] keys = StaticResourcesTool.keys;
 
             //遍历添加数据
-            for(int i = 0, len = keys.Length; i < len; i++)
+            for (int i = 0, len = keys.Length; i < len; i++)
             {
                 ToolModel tool = tools[keys[i]] as ToolModel;
 
@@ -205,9 +212,17 @@ namespace FPlug.Tools
 
         #region 内部工具--解析JSON
         //解析Item数据
-        private static ArrayList parseItemData(JArray items, string type)
+        private static ArrayList parseItemData(JToken source, string type)
         {
             ArrayList result = new ArrayList();
+
+            // 如果为null，则直接返回
+            if (source == null)
+            {
+                return result;
+            }
+
+            JArray items = source as JArray;
 
             for (int i = 0, len = items.Count; i < len; i++)
             {
@@ -246,6 +261,11 @@ namespace FPlug.Tools
                     HttpsModel temp = new HttpsModel(parentIndex, i, (bool)rule["enable"], rule["url"].ToString());
                     result.Add(temp);
                 }
+                else if (type == "header")
+                {
+                    HeaderModel temp = new HeaderModel(parentIndex, i, (bool)rule["enable"], rule["type"].ToString(), rule["url"].ToString(), rule["key"].ToString(), rule["value"].ToString());
+                    result.Add(temp);
+                }
             }
 
             return result;
@@ -258,7 +278,7 @@ namespace FPlug.Tools
 
             //获取key
             string[] keys = StaticResourcesTool.keys;
-            
+
             //遍历初始化
             for (int i = 0, len = keys.Length; i < len; i++)
             {
@@ -321,14 +341,16 @@ namespace FPlug.Tools
                 result.Add("host", new ArrayList());
                 result.Add("file", new ArrayList());
                 result.Add("https", new ArrayList());
+                result.Add("header", new ArrayList());
                 result.Add("tools", parseToolData(new JObject()));
             }
             else
             {
                 result.Add("enable", new ArrayList() { (bool)config["enable"] });
-                result.Add("host", parseItemData(config["host"] as JArray, "host"));
-                result.Add("file", parseItemData(config["file"] as JArray, "file"));
-                result.Add("https", parseItemData(config["https"] as JArray, "https"));
+                result.Add("host", parseItemData(config["host"], "host"));
+                result.Add("file", parseItemData(config["file"], "file"));
+                result.Add("https", parseItemData(config["https"], "https"));
+                result.Add("header", parseItemData(config["header"], "header"));
                 result.Add("tools", parseToolData(config["tools"] as JObject));
             }
 
@@ -376,7 +398,7 @@ namespace FPlug.Tools
             }
             catch (Exception e)
             {
-                Fiddler.FiddlerApplication.Log.LogString("FPlug出现错误(writeConfigToFile函数)：" + e.ToString());
+                FiddlerApplication.Log.LogString("FPlug出现错误(writeConfigToFile函数)：" + e.ToString());
             }
         }
         #endregion

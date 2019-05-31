@@ -74,12 +74,14 @@ namespace FPlug.Models
                     NotifyPropertyChanged("HostWrap");
                     NotifyPropertyChanged("FileWrap");
                     NotifyPropertyChanged("HttpsWrap");
+                    NotifyPropertyChanged("HeaderWrap");
                     NotifyPropertyChanged("ToolsWrap");
                     NotifyPropertyChanged("ConsoleWrap");
 
                     NotifyPropertyChanged("HostTabColor");
                     NotifyPropertyChanged("FileTabColor");
                     NotifyPropertyChanged("HttpsTabColor");
+                    NotifyPropertyChanged("HeaderTabColor");
                     NotifyPropertyChanged("ToolsTabColor");
                     NotifyPropertyChanged("ConsoleTabColor");
                 }
@@ -87,7 +89,7 @@ namespace FPlug.Models
         }
         #endregion
 
-        #region HostWrap、FileWrap、HttpsWrap、ToolsWrap、ConsoleWrap
+        #region HostWrap、FileWrap、HttpsWrap、HeaderWrap、ToolsWrap、ConsoleWrap
         public Visibility HostWrap
         {
             get
@@ -109,6 +111,13 @@ namespace FPlug.Models
                 return _type == "https" ? Visibility.Visible : Visibility.Collapsed;
             }
         }
+        public Visibility HeaderWrap
+        {
+            get
+            {
+                return _type == "header" ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
         public Visibility ToolsWrap
         {
             get
@@ -125,7 +134,7 @@ namespace FPlug.Models
         }
         #endregion
 
-        #region HostTabColor、FileTabColor、HttpsTabColor、ToolTabColor、ConsoleTabColor
+        #region HostTabColor、FileTabColor、HttpsTabColor、HeaderTabColor、ToolTabColor、ConsoleTabColor
         public string HostTabColor
         {
             get
@@ -145,6 +154,13 @@ namespace FPlug.Models
             get
             {
                 return _type == "https" ? "#FFEC8E72" : "#FFA8A8A8";
+            }
+        }
+        public string HeaderTabColor
+        {
+            get
+            {
+                return _type == "header" ? "#FFEC8E72" : "#FFA8A8A8";
             }
         }
         public string ToolsTabColor

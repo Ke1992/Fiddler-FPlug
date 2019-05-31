@@ -63,6 +63,9 @@
     <Compile Include="AlertUI\FIleAlertUI.xaml.cs">
       <DependentUpon>FIleAlertUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AlertUI\HeaderAlertUI.xaml.cs">
+      <DependentUpon>HeaderAlertUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AlertUI\HostAlertUI.xaml.cs">
       <DependentUpon>HostAlertUI.xaml</DependentUpon>
     </Compile>
@@ -81,6 +84,7 @@
     </Compile>
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\FileModel.cs" />
+    <Compile Include="Models\HeaderModel.cs" />
     <Compile Include="Models\HostModel.cs" />
     <Compile Include="Models\HttpsModel.cs" />
     <Compile Include="Models\ItemModel.cs" />
@@ -104,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AlertUI\FIleAlertUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AlertUI\HeaderAlertUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -210,6 +218,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\ExplainImages\Tools\ToolsResult_2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\top.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\ExplainImages\Header\HeaderResult_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\ExplainImages\Header\HeaderResult_2.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="ScriptsSource\console.js" />

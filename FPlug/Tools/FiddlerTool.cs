@@ -23,6 +23,8 @@ namespace FPlug.Tools
             }
             //console日志
             handleConsoleLogRequest(session);
+            //替换Header--Request端
+            replaceHeaderRequest(session);
             //HTTPS 转 HTTP
             handleHttpsToHttp(session);
             //HOST映射
@@ -44,6 +46,8 @@ namespace FPlug.Tools
             {
                 return;
             }
+            //替换Header--Response端
+            replaceHeaderResponse(session);
             //FILE映射
             handleFileMapping(session);
             //vConsole注入
@@ -170,7 +174,7 @@ namespace FPlug.Tools
             if (Main.mainData.getToolByType("console").Enable && Main.container != null)
             {
                 string fullUrl = session.fullUrl;
-                
+
                 //如果是日志请求，则直接
                 if (fullUrl.Contains("//www.example.com/?serial=") || fullUrl.Contains("//www.example.com?serial="))
                 {
@@ -238,6 +242,52 @@ namespace FPlug.Tools
                 //后增加
                 session.RequestHeaders.Add("Pragma", "no-cache");
                 session.RequestHeaders.Add("Cache-Control", "no-cache");
+            }
+        }
+        //替换Header--Request端
+        private static void replaceHeaderRequest(Session session)
+        {
+            List<BaseModel> rules = getValidRulesByType("header");
+
+            //如果没有有效的host配置，直接返回
+            if (rules.Count == 0)
+            {
+                return;
+            }
+
+            //获取Url的Path
+            string path = getPathFromSession(session.fullUrl);
+
+            //遍历配置去修改映射值
+            for (int i = 0; i < rules.Count; i++)
+            {
+                //获取对应的各种参数
+                string type = (rules[i] as HeaderModel).Type.ToString();
+                string url = (rules[i] as HeaderModel).Url.ToString();
+                string key = (rules[i] as HeaderModel).Key.ToString();
+                string value = (rules[i] as HeaderModel).Value.ToString();
+
+                //如果不是req，则直接返回
+                if (type != "req")
+                {
+                    continue;
+                }
+
+                //新建正则表达式来检测
+                Regex urlRegex = new Regex(url);
+
+                //判断当前session的path是否在配置中
+                if (path.IndexOf(url) >= 0 || urlRegex.IsMatch(path))
+                {
+                    //修改背景颜色、字体颜色
+                    session["ui-color"] = "#FFFFFF";
+                    session["ui-backcolor"] = "#4CAF50";
+
+                    //先删除
+                    session.RequestHeaders.Remove(key);
+                    //后增加
+                    session.RequestHeaders.Add(key, value);
+                }
             }
         }
         #endregion
@@ -361,7 +411,7 @@ namespace FPlug.Tools
             if (Main.mainData.getToolByType("invade").Enable)
             {
                 string fullUrl = session.fullUrl;
-                
+
                 //JS注入发起的请求
                 if (fullUrl.Contains("//www.example.com/?_t=") || fullUrl.Contains("//www.example.com?_t="))
                 {
@@ -381,7 +431,7 @@ namespace FPlug.Tools
 
                     //填充内容进去
                     session.utilSetResponseBody(content);
-                    
+
                     //直接修改状态返回码为200
                     session.responseCode = 200;
                 }
@@ -435,6 +485,60 @@ namespace FPlug.Tools
                     if (newResponseBody != null)
                     {
                         session.utilSetResponseBody(newResponseBody);
+                    }
+                }
+            }
+        }
+        //替换Header--Response端
+        private static void replaceHeaderResponse(Session session)
+        {
+            List<BaseModel> rules = getValidRulesByType("header");
+
+            //如果没有有效的host配置，直接返回
+            if (rules.Count == 0)
+            {
+                return;
+            }
+
+            //获取Url的Path
+            string path = getPathFromSession(session.fullUrl);
+
+            //遍历配置去修改映射值
+            for (int i = 0; i < rules.Count; i++)
+            {
+                //获取对应的各种参数
+                string type = (rules[i] as HeaderModel).Type.ToString();
+                string url = (rules[i] as HeaderModel).Url.ToString();
+                string key = (rules[i] as HeaderModel).Key.ToString();
+                string value = (rules[i] as HeaderModel).Value.ToString();
+
+                //如果不是res，则直接返回
+                if (type != "res")
+                {
+                    continue;
+                }
+
+                //新建正则表达式来检测
+                Regex urlRegex = new Regex(url);
+
+                //判断当前session的path是否在配置中
+                if (path.IndexOf(url) >= 0 || urlRegex.IsMatch(path))
+                {
+                    //修改背景颜色、字体颜色
+                    session["ui-color"] = "#FFFFFF";
+                    session["ui-backcolor"] = "#4CAF50";
+
+                    //特殊处理code
+                    if (key == StaticResourcesTool.responseCodeKey)
+                    {
+                        session.responseCode = Convert.ToInt32(value);
+                    }
+                    else
+                    {
+                        //先删除
+                        session.ResponseHeaders.Remove(key);
+                        //后增加
+                        session.ResponseHeaders.Add(key, value);
                     }
                 }
             }
@@ -546,7 +650,7 @@ namespace FPlug.Tools
 
             //判断是否包含<html 
             index = body.IndexOf("<html ");
-            if(index >= 0)
+            if (index >= 0)
             {
                 //注入脚本
                 body = body.Insert(index, script);

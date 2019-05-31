@@ -36,6 +36,11 @@
                 <Image Source="Resources/down.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
+        <MenuItem Header="置顶" Click="handleItemMenuClick" Tag="top">
+            <MenuItem.Icon>
+                <Image Source="Resources/top.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
     </ContextMenu>
     <!-- Rule菜单 -->
     <ContextMenu x:Key="menu_rule">
@@ -66,6 +71,11 @@
                 <Image Source="Resources/down.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
+        <MenuItem Header="置顶" Click="handleRuleMenuClick" Tag="top">
+            <MenuItem.Icon>
+                <Image Source="Resources/top.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
     </ContextMenu>
     <!-- Rule菜单__FILE -->
     <ContextMenu x:Key="menu_rule_file">
@@ -94,6 +104,11 @@
         <MenuItem Header="下移" Click="handleRuleMenuClick" Tag="down">
             <MenuItem.Icon>
                 <Image Source="Resources/down.png" Width="16" Height="16"></Image>
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="置顶" Click="handleRuleMenuClick" Tag="top">
+            <MenuItem.Icon>
+                <Image Source="Resources/top.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
         <Separator></Separator>
@@ -367,6 +382,58 @@
             <Rectangle Grid.Column="2" Tag="{Binding Path=IndexAndParentIndex}" MouseLeftButtonDown="changeRuleEnable" Visibility="{Binding Path=CheckShow}" Style="{StaticResource main_style_rect_check}"></Rectangle>
         </Grid>
     </ControlTemplate>
+    <!-- 容器模板__HEADER -->
+    <ControlTemplate x:Key="main_wrap_header">
+        <StackPanel Background="White" Margin="0,0,0,10">
+            <Label Template="{StaticResource main_name}"></Label>
+            <StackPanel Visibility="{Binding Path=ContentShow}">
+                <Grid Height="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="45*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Line Grid.Column="0" Style="{StaticResource main_style_vert_line}"/>
+                    <TextBlock Grid.Column="1" Text="Type" ToolTip="Type" Style="{StaticResource main_style_tips}"></TextBlock>
+                    <TextBlock Grid.Column="2" Text="Url" ToolTip="Url" Style="{StaticResource main_style_tips}"></TextBlock>
+                    <TextBlock Grid.Column="3" Text="Key" ToolTip="Key" Style="{StaticResource main_style_tips}"></TextBlock>
+                    <TextBlock Grid.Column="4" Text="Value" ToolTip="Value" Style="{StaticResource main_style_tips}"></TextBlock>
+                </Grid>
+                <StackPanel Name="content"></StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </ControlTemplate>
+    <!-- 内容模板__HEADER -->
+    <ControlTemplate x:Key="main_content_header">
+        <Grid Height="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="45*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Line Grid.Column="0" Style="{StaticResource main_style_vert_line}"/>
+            <Label Grid.Column="1" Grid.ColumnSpan="4" Style="{StaticResource main_style_hori_line}"></Label>
+
+            <Label Grid.Column="1" MouseDoubleClick="modifyRule" Tag="{Binding Path=IndexAndParentIndex}" Content="{Binding Path=Type}" ContextMenu="{StaticResource menu_rule}" Template="{StaticResource main_text}"></Label>
+            <Label Grid.Column="2" MouseDoubleClick="modifyRule" Tag="{Binding Path=IndexAndParentIndex}" Content="{Binding Path=Url}" ContextMenu="{StaticResource menu_rule}" Template="{StaticResource main_text}"></Label>
+            <Label Grid.Column="3" MouseDoubleClick="modifyRule" Tag="{Binding Path=IndexAndParentIndex}" Content="{Binding Path=Key}" ContextMenu="{StaticResource menu_rule}" Template="{StaticResource main_text}"></Label>
+            <Label Grid.Column="4" MouseDoubleClick="modifyRule" Tag="{Binding Path=IndexAndParentIndex}" Content="{Binding Path=Value}" ContextMenu="{StaticResource menu_rule}" Template="{StaticResource main_text}"></Label>
+
+            <Rectangle Grid.Column="5" Tag="{Binding Path=IndexAndParentIndex}" MouseLeftButtonDown="changeRuleEnable" Visibility="{Binding Path=CheckHide}" Style="{StaticResource main_style_rect}"></Rectangle>
+            <Canvas Grid.Column="5" Width="12" Height="12" Visibility="{Binding Path=CheckShow}">
+                <Path Fill="#FFEC8E72" Data="M10.125 1.5l-5.625 5.625-2.625-2.625-1.875 1.875 4.5 4.5 7.5-7.5z" />
+            </Canvas>
+            <Rectangle Grid.Column="5" Tag="{Binding Path=IndexAndParentIndex}" MouseLeftButtonDown="changeRuleEnable" Visibility="{Binding Path=CheckShow}" Style="{StaticResource main_style_rect_check}"></Rectangle>
+        </Grid>
+    </ControlTemplate>
     <!--#endregion-->
 
     <!--#region 工具库样式 -->
@@ -536,7 +603,7 @@
     </Style>
     <!-- 名称 -->
     <Style x:Key="alert_style_name" TargetType="Label">
-        <Setter Property="Width" Value="80"></Setter>
+        <Setter Property="Width" Value="100"></Setter>
         <Setter Property="Height" Value="50"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Right"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
@@ -590,5 +657,45 @@
         <Setter Property="Foreground" Value="Red"></Setter>
         <Setter Property="Padding" Value="0,5,0,0"></Setter>
     </Style>
+    <!-- Radio__未选中状态 -->
+    <Style x:Key="alert_style_radio_check_no" TargetType="Ellipse">
+        <Setter Property="Width" Value="24"></Setter>
+        <Setter Property="Height" Value="24"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Panel.ZIndex" Value="1"></Setter>
+        <Setter Property="Fill" Value="#00000000"></Setter>
+        <Setter Property="Stroke" Value="#FFEC8E72"></Setter>
+        <Setter Property="StrokeThickness" Value="3"></Setter>
+    </Style>
+    <!-- ComboxBox -->
+    <Style x:Key="alert_style_combox_box" TargetType="ComboBox">
+        <Setter Property="Width" Value="300"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Opacity" Value="0"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Margin" Value="-300,0,0,0"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region 弹框模板 -->
+    <!-- Radio__选中状态 -->
+    <ControlTemplate x:Key="alert_radio_checked">
+        <WrapPanel Margin="-24,0,0,0" Width="24" Height="24">
+            <Ellipse Width="24" Height="24" Stroke="#FFEC8E72" StrokeThickness="3" Fill="#FFEC8E72"></Ellipse>
+            <Canvas Width="14" Height="14" Margin="-24,0,0,0">
+                <Path Fill="#FFFFFF" Data="M11.813 1.75l-6.563 6.563-3.063-3.063-2.188 2.188 5.25 5.25 8.75-8.75z" />
+            </Canvas>
+        </WrapPanel>
+    </ControlTemplate>
+    <!-- ComboxBox -->
+    <ControlTemplate x:Key="alert_style_combox_box_front">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}" Width="300" Height="30" VerticalContentAlignment="Center" Foreground="Black" Margin="10,0,0,0" BorderBrush="#FF666666" BorderThickness="0,0,0,1"></Label>
+            <Canvas Width="20" Height="20" Margin="-20,0,0,0">
+                <Path Fill="#FF666666" Data="M6.196 6.929l-1.768 1.768 5.571 5.571 5.571-5.571-1.768-1.768-3.804 3.804z" />
+            </Canvas>
+        </StackPanel>
+    </ControlTemplate>
     <!--#endregion-->
 </ResourceDictionary>
