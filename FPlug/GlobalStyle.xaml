@@ -9,34 +9,34 @@
     <!--#region 右键菜单模板 -->
     <!-- Item菜单 -->
     <ContextMenu x:Key="menu_item">
-        <MenuItem Header="新增规则" Click="handleItemMenuClick" Tag="add">
+        <MenuItem Header="Add Rule" Click="handleItemMenuClick" Tag="add">
             <MenuItem.Icon>
                 <Image Source="Resources/add.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
         <Separator></Separator>
-        <MenuItem Header="修改" Click="handleItemMenuClick" Tag="modify">
+        <MenuItem Header="Modify" Click="handleItemMenuClick" Tag="modify">
             <MenuItem.Icon>
                 <Image Source="Resources/modify.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Header="删除" Click="handleItemMenuClick" Tag="delete">
+        <MenuItem Header="Delete" Click="handleItemMenuClick" Tag="delete">
             <MenuItem.Icon>
                 <Image Source="Resources/delete.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
         <Separator></Separator>
-        <MenuItem Header="上移" Click="handleItemMenuClick" Tag="up">
+        <MenuItem Header="Move Up" Click="handleItemMenuClick" Tag="up">
             <MenuItem.Icon>
                 <Image Source="Resources/up.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Header="下移" Click="handleItemMenuClick" Tag="down">
+        <MenuItem Header="Move Down" Click="handleItemMenuClick" Tag="down">
             <MenuItem.Icon>
                 <Image Source="Resources/down.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Header="置顶" Click="handleItemMenuClick" Tag="top">
+        <MenuItem Header="To Top" Click="handleItemMenuClick" Tag="top">
             <MenuItem.Icon>
                 <Image Source="Resources/top.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
@@ -44,34 +44,34 @@
     </ContextMenu>
     <!-- Rule菜单 -->
     <ContextMenu x:Key="menu_rule">
-        <MenuItem Header="修改" Click="handleRuleMenuClick" Tag="modify">
+        <MenuItem Header="Mofidy" Click="handleRuleMenuClick" Tag="modify">
             <MenuItem.Icon>
                 <Image Source="Resources/modify.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Header="删除" Click="handleRuleMenuClick" Tag="delete">
+        <MenuItem Header="Delete" Click="handleRuleMenuClick" Tag="delete">
             <MenuItem.Icon>
                 <Image Source="Resources/delete.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
         <Separator></Separator>
-        <MenuItem Header="复制" Click="handleRuleMenuClick" Tag="copy">
+        <MenuItem Header="Copy" Click="handleRuleMenuClick" Tag="copy">
             <MenuItem.Icon>
                 <Image Source="Resources/copy.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
         <Separator></Separator>
-        <MenuItem Header="上移" Click="handleRuleMenuClick" Tag="up">
+        <MenuItem Header="Move Up" Click="handleRuleMenuClick" Tag="up">
             <MenuItem.Icon>
                 <Image Source="Resources/up.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Header="下移" Click="handleRuleMenuClick" Tag="down">
+        <MenuItem Header="Move Down" Click="handleRuleMenuClick" Tag="down">
             <MenuItem.Icon>
                 <Image Source="Resources/down.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Header="置顶" Click="handleRuleMenuClick" Tag="top">
+        <MenuItem Header="To Top" Click="handleRuleMenuClick" Tag="top">
             <MenuItem.Icon>
                 <Image Source="Resources/top.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
@@ -79,40 +79,40 @@
     </ContextMenu>
     <!-- Rule菜单__FILE -->
     <ContextMenu x:Key="menu_rule_file">
-        <MenuItem Header="修改" Click="handleRuleMenuClick" Tag="modify">
+        <MenuItem Header="Modify" Click="handleRuleMenuClick" Tag="modify">
             <MenuItem.Icon>
                 <Image Source="Resources/modify.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Header="删除" Click="handleRuleMenuClick" Tag="delete">
+        <MenuItem Header="Delete" Click="handleRuleMenuClick" Tag="delete">
             <MenuItem.Icon>
                 <Image Source="Resources/delete.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
         <Separator></Separator>
-        <MenuItem Header="复制" Click="handleRuleMenuClick" Tag="copy">
+        <MenuItem Header="Copy" Click="handleRuleMenuClick" Tag="copy">
             <MenuItem.Icon>
                 <Image Source="Resources/copy.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
         <Separator></Separator>
-        <MenuItem Header="上移" Click="handleRuleMenuClick" Tag="up">
+        <MenuItem Header="Move Up" Click="handleRuleMenuClick" Tag="up">
             <MenuItem.Icon>
                 <Image Source="Resources/up.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Header="下移" Click="handleRuleMenuClick" Tag="down">
+        <MenuItem Header="Move Down" Click="handleRuleMenuClick" Tag="down">
             <MenuItem.Icon>
                 <Image Source="Resources/down.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Header="置顶" Click="handleRuleMenuClick" Tag="top">
+        <MenuItem Header="To Top" Click="handleRuleMenuClick" Tag="top">
             <MenuItem.Icon>
                 <Image Source="Resources/top.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
         </MenuItem>
         <Separator></Separator>
-        <MenuItem Header="打开文件位置" Click="handleRuleMenuClick" Tag="open">
+        <MenuItem Header="Open Containing Folder" Click="handleRuleMenuClick" Tag="open">
             <MenuItem.Icon>
                 <Image Source="Resources/file.png" Width="16" Height="16"></Image>
             </MenuItem.Icon>
@@ -269,7 +269,7 @@
 
                     <Line Grid.Column="0" Style="{StaticResource main_style_vert_line}"/>
                     <TextBlock Grid.Column="1" Text="IP" ToolTip="IP" Style="{StaticResource main_style_tips}"></TextBlock>
-                    <TextBlock Grid.Column="2" Text="URL" ToolTip="URL" Style="{StaticResource main_style_tips}"></TextBlock>
+                    <TextBlock Grid.Column="2" Text="Url" ToolTip="Url" Style="{StaticResource main_style_tips}"></TextBlock>
                 </Grid>
                 <StackPanel Name="content"></StackPanel>
             </StackPanel>
@@ -312,8 +312,8 @@
                     </Grid.ColumnDefinitions>
 
                     <Line Grid.Column="0" Style="{StaticResource main_style_vert_line}"/>
-                    <TextBlock Grid.Column="1" Text="URL" ToolTip="URL" Style="{StaticResource main_style_tips}"></TextBlock>
-                    <TextBlock Grid.Column="2" Text="文件路径" ToolTip="文件路径" Style="{StaticResource main_style_tips}"></TextBlock>
+                    <TextBlock Grid.Column="1" Text="Url" ToolTip="Url" Style="{StaticResource main_style_tips}"></TextBlock>
+                    <TextBlock Grid.Column="2" Text="File Path" ToolTip="File Path" Style="{StaticResource main_style_tips}"></TextBlock>
                 </Grid>
                 <StackPanel Name="content"></StackPanel>
             </StackPanel>
@@ -355,7 +355,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Line Grid.Column="0" Style="{StaticResource main_style_vert_line}"/>
-                    <TextBlock Grid.Column="1" Text="URL" ToolTip="URL" Style="{StaticResource main_style_tips}"></TextBlock>
+                    <TextBlock Grid.Column="1" Text="Url" ToolTip="Url" Style="{StaticResource main_style_tips}"></TextBlock>
                 </Grid>
                 <StackPanel Name="content"></StackPanel>
             </StackPanel>

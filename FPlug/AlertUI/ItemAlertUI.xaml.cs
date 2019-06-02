@@ -48,7 +48,7 @@ namespace FPlug.AlertUI
 
             if (name.Length == 0)
             {
-                Fiddler.FiddlerApplication.DoNotifyUser("请填写项目名", "输入提示");
+                Fiddler.FiddlerApplication.DoNotifyUser("Please input the project name", "Error Tips");
                 return;
             }
 

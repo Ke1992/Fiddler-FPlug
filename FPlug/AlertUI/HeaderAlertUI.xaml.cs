@@ -96,6 +96,7 @@ namespace FPlug.AlertUI
             //更新UI
             this.updateUI();
         }
+        
         //保存点击事件
         private void addHeaderRule(object sender, MouseButtonEventArgs e)
         {
@@ -106,25 +107,25 @@ namespace FPlug.AlertUI
 
             if (type.Length == 0)
             {
-                Fiddler.FiddlerApplication.DoNotifyUser("请填写Type", "输入提示");
+                Fiddler.FiddlerApplication.DoNotifyUser("Please input the type", "Error tips");
                 return;
             }
 
             if (url.Length == 0)
             {
-                Fiddler.FiddlerApplication.DoNotifyUser("请填写Url", "输入提示");
+                Fiddler.FiddlerApplication.DoNotifyUser("Please input the url", "Error tips");
                 return;
             }
 
             if (key.Length == 0)
             {
-                Fiddler.FiddlerApplication.DoNotifyUser("请填写Key", "输入提示");
+                Fiddler.FiddlerApplication.DoNotifyUser("Please input the key", "Error tips");
                 return;
             }
 
             if (value.Length == 0)
             {
-                Fiddler.FiddlerApplication.DoNotifyUser("请填写Value", "输入提示");
+                Fiddler.FiddlerApplication.DoNotifyUser("Please input the value", "Error tips");
                 return;
             }
 
@@ -155,6 +156,7 @@ namespace FPlug.AlertUI
             //关闭弹框
             (this.Parent as Window).Close();
         }
+        
         //comboBox选择事件
         private void comboBoxSelectEvent(object sender, SelectionChangedEventArgs e)
         {

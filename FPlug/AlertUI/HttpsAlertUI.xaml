@@ -14,11 +14,11 @@
     <!--#endregion-->
 
     <StackPanel Background="White">
-        <Label Content="请填写相关配置" Style="{StaticResource alert_style_title}"></Label>
+        <Label Content="Rule Config" Style="{StaticResource alert_style_title}"></Label>
         <StackPanel Style="{StaticResource alert_style_wrap_textarea}">
-            <Label Style="{StaticResource alert_style_name}">URL</Label>
+            <Label Style="{StaticResource alert_style_name}">Url</Label>
             <TextBox x:Name="url" KeyDown="inputKeyDown" Style="{StaticResource alert_style_textarea}"/>
         </StackPanel>
-        <Label MouseLeftButtonDown="addHttpsRule" Style="{StaticResource alert_style_sure_btn}">确定</Label>
+        <Label MouseLeftButtonDown="addHttpsRule" Style="{StaticResource alert_style_sure_btn}">OK</Label>
     </StackPanel>
 </UserControl>

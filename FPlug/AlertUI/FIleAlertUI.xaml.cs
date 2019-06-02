@@ -53,13 +53,13 @@ namespace FPlug.AlertUI
 
             if (url.Length == 0)
             {
-                Fiddler.FiddlerApplication.DoNotifyUser("请填写URL", "输入提示");
+                Fiddler.FiddlerApplication.DoNotifyUser("Please input the url", "Error tips");
                 return;
             }
 
             if (path.Length == 0)
             {
-                Fiddler.FiddlerApplication.DoNotifyUser("请填写文件路径", "输入提示");
+                Fiddler.FiddlerApplication.DoNotifyUser("Please input the file path", "Error tips");
                 return;
             }
 

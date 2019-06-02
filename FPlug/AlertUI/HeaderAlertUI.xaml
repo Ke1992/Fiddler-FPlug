@@ -14,7 +14,7 @@
     <!--#endregion-->
 
     <StackPanel Background="White">
-        <Label Content="请填写相关配置" Style="{StaticResource alert_style_title}"></Label>
+        <Label Content="Rule Config" Style="{StaticResource alert_style_title}"></Label>
         <StackPanel Style="{StaticResource alert_style_wrap}">
             <Label Style="{StaticResource alert_style_name}">Type</Label>
             <WrapPanel VerticalAlignment="Center" Margin="10,0,0,0">
@@ -29,7 +29,7 @@
             </WrapPanel>
         </StackPanel>
         <StackPanel Style="{StaticResource alert_style_wrap_textarea}">
-            <Label Style="{StaticResource alert_style_name}">URL</Label>
+            <Label Style="{StaticResource alert_style_name}">Url</Label>
             <TextBox x:Name="url" KeyDown="inputKeyDown" Style="{StaticResource alert_style_textarea}"/>
         </StackPanel>
         <StackPanel Style="{StaticResource alert_style_wrap}">
@@ -45,7 +45,7 @@
             <Label Style="{StaticResource alert_style_name}">Value</Label>
             <TextBox x:Name="value" KeyDown="inputKeyDown" Style="{StaticResource alert_style_input}"/>
         </StackPanel>
-        <Label MouseLeftButtonDown="addHeaderRule" Style="{StaticResource alert_style_sure_btn}">确定</Label>
+        <Label MouseLeftButtonDown="addHeaderRule" Style="{StaticResource alert_style_sure_btn}">OK</Label>
     </StackPanel>
 </UserControl>
 

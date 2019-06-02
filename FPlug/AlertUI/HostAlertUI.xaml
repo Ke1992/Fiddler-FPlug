@@ -14,7 +14,7 @@
     <!--#endregion-->
 
     <StackPanel Background="White">
-        <Label Content="请填写相关配置" Style="{StaticResource alert_style_title}"></Label>
+        <Label Content="Rule Config" Style="{StaticResource alert_style_title}"></Label>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="295"/>
@@ -25,14 +25,14 @@
                 <TextBox x:Name="ip" KeyDown="inputKeyDown" Style="{StaticResource alert_style_input}" Width="165"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Style="{StaticResource alert_style_wrap}">
-                <Label Style="{StaticResource alert_style_name}" Width="40" Margin="0">端口</Label>
+                <Label Style="{StaticResource alert_style_name}" Width="40" Margin="0">Port</Label>
                 <TextBox x:Name="port" KeyDown="inputKeyDown" Style="{StaticResource alert_style_input}" Width="75" Margin="10,10,0,0"/>
             </StackPanel>
         </Grid>
         <StackPanel Style="{StaticResource alert_style_wrap_textarea}">
-            <Label Style="{StaticResource alert_style_name}">URL</Label>
+            <Label Style="{StaticResource alert_style_name}">Url</Label>
             <TextBox x:Name="url" KeyDown="inputKeyDown" Style="{StaticResource alert_style_textarea}"/>
         </StackPanel>
-        <Label MouseLeftButtonDown="addHostRule" Style="{StaticResource alert_style_sure_btn}">确定</Label>
+        <Label MouseLeftButtonDown="addHostRule" Style="{StaticResource alert_style_sure_btn}">OK</Label>
     </StackPanel>
 </UserControl>

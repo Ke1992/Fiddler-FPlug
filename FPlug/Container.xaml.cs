@@ -385,11 +385,11 @@ namespace FPlug
             }
 
             //添加内容
-            paragraph.Inlines.Add("来源：" + url);
+            paragraph.Inlines.Add("Source：" + url);
             paragraph.Inlines.Add(new LineBreak());
-            paragraph.Inlines.Add("序号：" + serial);
+            paragraph.Inlines.Add("Serial：" + serial);
             paragraph.Inlines.Add(new LineBreak());
-            paragraph.Inlines.Add("内容：" + content);
+            paragraph.Inlines.Add("Content：" + content);
 
             //向流文档添加内容
             this.tool_console_content.Blocks.Add(paragraph);

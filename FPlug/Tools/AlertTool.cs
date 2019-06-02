@@ -14,7 +14,7 @@ namespace FPlug.Tools
         {
             ItemAlertUI itemAlertUI = new ItemAlertUI(index);
             //初始化窗体
-            Window window = initWindow("项目配置", 200);
+            Window window = initWindow("Project Config", 200);
             //设置window窗体内容
             window.Content = itemAlertUI;
             //自动聚焦
@@ -28,7 +28,7 @@ namespace FPlug.Tools
         {
             string type = Main.mainData.type;
             //初始化窗体
-            Window window = initWindow("规则配置", 310);
+            Window window = initWindow("Rule Config", 310);
             //设置window窗体内容
             if (type == "host")
             {
@@ -72,27 +72,27 @@ namespace FPlug.Tools
             string title = "";
             if (type == "host")
             {
-                title = "HOST 映射";
+                title = "Host Mapping";
             }
             else if (type == "file")
             {
-                title = "FILE 映射";
+                title = "File Mapping";
             }
             else if (type == "https")
             {
-                title = "HTTPS 转 HTTP";
+                title = "Https To Http";
             }
             else if (type == "header")
             {
-                title = "HEADER替换";
+                title = "Header Replace";
             }
             else if (type == "tools")
             {
-                title = "工具库";
+                title = "Tools";
             }
             else if (type == "console")
             {
-                title = "CONSOLE 日志";
+                title = "Console Log";
             }
             ExplainAlertUI explainAlertUI = new ExplainAlertUI(type);
             //初始化窗体

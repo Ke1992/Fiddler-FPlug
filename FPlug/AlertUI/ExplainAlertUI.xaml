@@ -16,39 +16,39 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="White">
         <StackPanel Margin="10,0">
             <StackPanel x:Name="host" Visibility="Collapsed">
-                <Label HorizontalContentAlignment="Center" Margin="0,10">HOST映射说明</Label>
-                <TextBlock Style="{StaticResource alert_style_explain}">1、IP字段：填写映射机器的IP地址即可</TextBlock>
-                <TextBlock Style="{StaticResource alert_style_explain}">2、端口字段：非必填，填写则替换为指定端口号，为空则使用请求本身的端口号</TextBlock>
+                <Label HorizontalContentAlignment="Center" Margin="0,10">Host Mapping Explanation</Label>
+                <TextBlock Style="{StaticResource alert_style_explain}">1、IP: Input the IP address</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">2、Port: Not necessary. If it is empty, use the port of the request itself</TextBlock>
                 <TextBlock Style="{StaticResource alert_style_explain}">
-                3、URL字段：<LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、不局限于域名，以映射https://www.example.com/test/index.html为例</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、可以指定具体的Path，如：www.example.com/test</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (3)、可以是URL的任意部分，如：com/test/i</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (4)、支持正则表达式，如：\S*.example.com</Label>
+                3、Url:<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、Not limited to domain name, use https://www.example.com/test/index.html as an example</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、Can use the full path, example: www.example.com/test</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (3)、Can be any part of the url, example: com/test/i</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (4)、Support for regular expressions, example: \S*.example.com</Label>
                 </TextBlock>
-                <TextBlock Style="{StaticResource alert_style_explain}">4、配置示例：</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">4、Config example:</TextBlock>
                 <Image Source="../Resources/ExplainImages/Host/HsotResult_1.jpg" Width="625"></Image>
-                <TextBlock Style="{StaticResource alert_style_explain}">5、映射结果示例：</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">5、Mapping result example:</TextBlock>
                 <Image Source="../Resources/ExplainImages/Host/HsotResult_2.jpg" Width="625"></Image>
             </StackPanel>
             <StackPanel x:Name="file" Visibility="Collapsed">
-                <Label HorizontalContentAlignment="Center" Margin="0,10">FILE映射说明</Label>
+                <Label HorizontalContentAlignment="Center" Margin="0,10">File Mapping Explanation</Label>
                 <TextBlock Style="{StaticResource alert_style_explain}">
-                1、URL字段：<LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、不局限于域名，以映射https://www.example.com/test/index.html为例</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、可以指定具体的Path，如：www.example.com/test</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (3)、可以是URL的任意部分，如：com/test/i</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (4)、支持正则表达式，如：\S*.example.com</Label>
+                1、Url:<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、Not limited to domain name, use https://www.example.com/test/index.html as an example</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、Can use the full path, example: www.example.com/test</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (3)、Can be any part of the url, example: com/test/i</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (4)、Support for regular expressions, example: \S*.example.com</Label>
                 </TextBlock>
                 <TextBlock Style="{StaticResource alert_style_explain}">
-                2、文件路径字段：<LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、仅支持正确的全路径</Label>
-                <Label Style="{StaticResource alert_style_explain_emphasize}">(如果路径不正确将会有错误弹框！！！)</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、如果映射的URL中带有callback字段，则会自动替换文件里面第一个callback字符串</Label>
+                2、File Path:<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、Only correct full path is supported</Label>
+                <Label Style="{StaticResource alert_style_explain_emphasize}">(If the path is incorrect, will be alert an error box！！！)</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、If the url has a callback parameter, it will automatically replace the first callback string in the file</Label>
                 </TextBlock>
-                <TextBlock Style="{StaticResource alert_style_explain}">3、配置示例：</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">3、Config example:</TextBlock>
                 <Image Source="../Resources/ExplainImages/File/FileResult_1.jpg" Width="625"></Image>
-                <TextBlock Style="{StaticResource alert_style_explain}">4、映射结果示例：</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">4、Mapping result example:</TextBlock>
                 <Image Source="../Resources/ExplainImages/File/FileResult_2.jpg" Width="625"></Image>
                 <Label></Label>
                 <Image Source="../Resources/ExplainImages/File/FileResult_3.jpg" Width="625"></Image>
@@ -56,98 +56,113 @@
                 <Image Source="../Resources/ExplainImages/File/FileResult_4.jpg" Width="625"></Image>
             </StackPanel>
             <StackPanel x:Name="https" Visibility="Collapsed">
-                <Label HorizontalContentAlignment="Center" Margin="0,10">HTTPS 转 HTTP说明</Label>
-                <TextBlock Style="{StaticResource alert_style_explain}">1、使用此配置必须开启Fiddler的HTTPS抓包功能</TextBlock>
+                <Label HorizontalContentAlignment="Center" Margin="0,10">Https To Http Explanation</Label>
+                <TextBlock Style="{StaticResource alert_style_explain}">1、Fiddler's https packet capture must be enabled with this configuration</TextBlock>
                 <TextBlock Style="{StaticResource alert_style_explain}">
-                2、URL字段：<LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、不局限于域名，以映射https://www.example.com/test/index.html为例</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、可以指定具体的Path，如：www.example.com/test</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (3)、可以是URL的任意部分，如：com/test/i</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (4)、支持正则表达式，如：\S*.example.com</Label>
+                2、Url:<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、Not limited to domain name, use https://www.example.com/test/index.html as an example</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、Can use the full path, example: www.example.com/test</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (3)、Can be any part of the url, example: com/test/i</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (4)、Support for regular expressions, example: \S*.example.com</Label>
                 </TextBlock>
-                <TextBlock Style="{StaticResource alert_style_explain}">3、配置示例：</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">3、Config example:</TextBlock>
                 <Image Source="../Resources/ExplainImages/Https/HttpsResult_1.jpg" Width="625"></Image>
-                <TextBlock Style="{StaticResource alert_style_explain}">4、映射结果示例：</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">4、Mapping result example:</TextBlock>
                 <Image Source="../Resources/ExplainImages/Https/HttpsResult_2.jpg" Width="625"></Image>
             </StackPanel>
+            <StackPanel x:Name="header" Visibility="Collapsed">
+                <Label HorizontalContentAlignment="Center" Margin="0,10">Header Header Explanation</Label>
+                <TextBlock Style="{StaticResource alert_style_explain}">
+                1、Type:<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、req is the Request</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、res is the Response</Label>
+                </TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">
+                2、Url:<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、Not limited to domain name, use https://www.example.com/test/index.html as an example</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、Can use the full path, example: www.example.com/test</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (3)、Can be any part of the url, example: com/test/i</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (4)、Support for regular expressions, example: \S*.example.com</Label>
+                </TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">3、Key: Need to follow the format as User-Agent</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">4、Config example:</TextBlock>
+                <Image Source="../Resources/ExplainImages/Header/HeaderResult_1.jpg" Width="625"></Image>
+                <TextBlock Style="{StaticResource alert_style_explain}">5、Mapping result example:</TextBlock>
+                <Image Source="../Resources/ExplainImages/Header/HeaderResult_2.jpg" Width="625"></Image>
+            </StackPanel>
             <StackPanel x:Name="tools" Visibility="Collapsed">
-                <Label HorizontalContentAlignment="Center" Margin="0,10">工具库说明</Label>
+                <Label HorizontalContentAlignment="Center" Margin="0,10">Tools Explanation</Label>
                 <!--#region serverip -->
                 <TextBlock Style="{StaticResource alert_style_explain}">
-                1、显示serverip工具：<LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    开启后会自动在session面板中追加一列ServerIP，用来显示请求最终的IP地址</Label>
+                1、ServerIp: <LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    After opening, it will automatically add a column of ServerIP in the session panel to display the final IP</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">address of the request</Label>
                 </TextBlock>
                 <Image Source="../Resources/ExplainImages/Tools/ToolsResult_1.jpg" Width="625"></Image>
                 <!--#endregion-->
                 <!--#region cache -->
                 <TextBlock Style="{StaticResource alert_style_explain}">
-                2、禁止缓存工具：<LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    开启后会主动修改Request和Response头的相关字段，来禁止缓存生效</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、Request头：</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        a、删除Expires</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        b、删除If-None-Match</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        c、删除If-Modified-Since</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        d、强制修改Pragma为no-cache</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        e、强制修改Cache-Control为no-cache</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、Response头：</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        a、删除Expires</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        b、强制修改Pragma为no-cache</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        c、强制修改Cache-Control为no-cache</Label>
+                2、Disable Cache:<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    After opening, it will automatically modify the related fields of the Request and Response headers to disable</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">cache</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、Request:</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        a、Delete Expires</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        b、Delete If-None-Match</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        c、Delete If-Modified-Since</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        d、Modify Pragma to no-cache</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        e、Modify Cache-Control to no-cache</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、Response:</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        a、Delete Expires</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        b、Modify Pragma to no-cache</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">        c、Modify Cache-Control to no-cache</Label>
+                </TextBlock>
+                <!--#endregion-->
+                <!--#region vConsole -->
+                <TextBlock Style="{StaticResource alert_style_explain}">
+                3、vConsole:<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、After opening, the vConsole script will be injected into the page</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">    (2)、Only text/html is included for Content-Type, and requests starting with &lt;!DOCTYPE or &lt;!doctype are</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">valid</Label>
                 </TextBlock>
                 <!--#endregion-->
                 <!--#region console -->
                 <TextBlock Style="{StaticResource alert_style_explain}">
-                3、console日志工具：<LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、开启后会增加日志面板，同时会主动往网页中注入JS脚本，修改console方法，捕获日志后发起POST请求</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、日志输出的顺序请以序号为准</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">    (3)、开启后之前已经打开的页面需要刷新才能捕获日志</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">    (4)、仅会往Content-Type包含text/html，并且，以&lt;!DOCTYPE或者&lt;!doctype开头的请求中注入脚本</Label>
+                4、Console:<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、After opening, the log panel will be added. At the same time, the JS script will be injected into the</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">page, the console method will be modified, and the post request will be initiated after the log is captured</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、The order of log output is subject to the serial number</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">    (3)、The page that was opened before opening needs to be refreshed in order to capture logs</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">    (4)、Only include text/html to the Content-Type, and inject the script into the request starting with</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">&lt;!DOCTYPE or &lt;!doctype</Label>
                 </TextBlock>
                 <Image Source="../Resources/ExplainImages/Tools/ToolsResult_2.jpg" Width="625"></Image>
                 <!--#endregion-->
                 <!--#region invade -->
                 <TextBlock Style="{StaticResource alert_style_explain}">
-                4、JS注入工具：<LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、开启后，在输入框中键入JavaScript脚本，然后点击发送，会主动向代理中的网页注入对应的脚本</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">    (2)、开启后之前已经打开的页面需要刷新才能响应注入的脚本</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">    (3)、仅对Content-Type包含text/html，并且，以&lt;!DOCTYPE或者&lt;!doctype开头的请求有效</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">    (4)、会每隔2S请求一次www.example.com，请忽略！！！</Label><LineBreak/>
+                5、JS Inject:<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、After opening, type the JavaScript script in the input box, and then click Send button, it will</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">automatically inject the corresponding script into the webpage in the proxy</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">    (2)、The page that was opened before opening needs to be refreshed in order to respond to the injected</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">script</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">    (3)、Only text/html is included for Content-Type, and requests starting with &lt;!DOCTYPE or &lt;!doctype are</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">valid</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_emphasize}">    (4)、Will request www.example.com every 2 seconds, please ignore！！！</Label><LineBreak/>
                 </TextBlock>
                 <!--#endregion-->
             </StackPanel>
             <StackPanel x:Name="console" Visibility="Collapsed">
-                <Label HorizontalContentAlignment="Center" Margin="0,10">console日志说明</Label>
-                <TextBlock Style="{StaticResource alert_style_explain}">1、此面板仅在开启console日志工具后出现</TextBlock>
+                <Label HorizontalContentAlignment="Center" Margin="0,10">Console Log Explanation</Label>
+                <TextBlock Style="{StaticResource alert_style_explain}">1、This panel display only after opening the console log</TextBlock>
                 <TextBlock Style="{StaticResource alert_style_explain}">
-                    2、每条日志包含以下内容：<LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、来源：该条日志源自哪一个网页</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、序号：对应网页中console执行的顺序</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (3)、内容：对应console的输出结果</Label>
+                    2、Each log contains the following:<LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、Source: The source of the log</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、Serial: Console execution order</Label><LineBreak/>
+                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (3)、Content: Console output</Label>
                 </TextBlock>
-                <TextBlock Style="{StaticResource alert_style_explain}">2、清空日志按钮：可以清空当前的所有日志记录</TextBlock>
-                <TextBlock Style="{StaticResource alert_style_explain}">3、筛选：可以从当前所有日志中筛选对应级别的日志(不会删除其他级别的日志)</TextBlock>
-                <TextBlock Style="{StaticResource alert_style_explain}">4、结果范例展示：</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">2、Clear：Can clear all log records</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">3、Filter: Can filter the corresponding level of logs from all current logs (do not delete other levels of logs)</TextBlock>
+                <TextBlock Style="{StaticResource alert_style_explain}">4、Result example:</TextBlock>
                 <Image Source="../Resources/ExplainImages/Tools/ToolsResult_2.jpg" Width="625"></Image>
-            </StackPanel>
-            <StackPanel x:Name="header" Visibility="Collapsed">
-                <Label HorizontalContentAlignment="Center" Margin="0,10">HEADER替换说明</Label>
-                <TextBlock Style="{StaticResource alert_style_explain}">
-                1、Type字段：<LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、req代表是Request端</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、res代表是Response端</Label>
-                </TextBlock>
-                <TextBlock Style="{StaticResource alert_style_explain}">
-                2、URL字段：<LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (1)、不局限于域名，以映射https://www.example.com/test/index.html为例</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (2)、可以指定具体的Path，如：www.example.com/test</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (3)、可以是URL的任意部分，如：com/test/i</Label><LineBreak/>
-                <Label xml:space="preserve" Style="{StaticResource alert_style_explain_label}">    (4)、支持正则表达式，如：\S*.example.com</Label>
-                </TextBlock>
-                <TextBlock Style="{StaticResource alert_style_explain}">3、Key字段：需要遵守格式如 User-Agent</TextBlock>
-                <TextBlock Style="{StaticResource alert_style_explain}">4、配置示例：</TextBlock>
-                <Image Source="../Resources/ExplainImages/Header/HeaderResult_1.jpg" Width="625"></Image>
-                <TextBlock Style="{StaticResource alert_style_explain}">5、映射结果示例：</TextBlock>
-                <Image Source="../Resources/ExplainImages/Header/HeaderResult_2.jpg" Width="625"></Image>
             </StackPanel>
             <Label Height="20"></Label>
         </StackPanel>

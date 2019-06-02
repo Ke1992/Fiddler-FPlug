@@ -51,7 +51,7 @@ namespace FPlug.AlertUI
 
             if (url.Length == 0)
             {
-                Fiddler.FiddlerApplication.DoNotifyUser("请填写URL", "输入提示");
+                Fiddler.FiddlerApplication.DoNotifyUser("Please input the url", "Error tips");
                 return;
             }
 
