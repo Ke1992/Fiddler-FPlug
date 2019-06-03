@@ -74,7 +74,7 @@ Download the dll file in the dist folder and copy it to the Scripts folder in th
 1、After opening, it will automatically add a column of ServerIP in the session panel to display the final IP address of the request  
 2、Example:  
 ![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/serverip.gif "ServerIP")
-### 禁止缓存
+### Disable Cache
 1、After opening, it will automatically modify the related fields of the Request and Response headers to disable cache  
 　　(1)、Request:  
 　　　　a、Delete Expires  
