@@ -80,7 +80,7 @@ Section "Main"
 	;如果结果为空(即不包含必要字段)
 	${If} $0 == ""
 	${OrIf} $1 == ""
-		MessageBox MB_OK|MB_ICONEXCLAMATION "请选择Fiddler安装目录下的Scripts文件夹"
+		MessageBox MB_OK|MB_ICONEXCLAMATION "Please select the Scripts folder in the Fiddler installation directory"
 		;返回目录选择页
 		SendMessage $HWNDPARENT 0x408 -1 0
 		;不执行后面的代码
@@ -94,10 +94,10 @@ Section "Main"
 	File "..\FPlug.dll"
 	File "..\Newtonsoft.Json.dll"
 	;输出到日志中
-	DetailPrint "安装路径：$INSTDIR"
-	DetailPrint "安装成功！"
+	DetailPrint "Install Path: $INSTDIR"
+	DetailPrint "Success!"
 	;使用MessageBox弹出一个对话框
-	MessageBox MB_OK|MB_ICONEXCLAMATION "安装成功"
+	MessageBox MB_OK|MB_ICONEXCLAMATION "Success"
 SectionEnd
 
 ;是否显示安装日志
