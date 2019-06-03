@@ -1,105 +1,107 @@
+English | [简体中文](https://github.com/Ke1992/Fiddler-FPlug/blob/master/README-zh_CN.md)
 # FPlug
-FPlug是一个Fiddler插件，提供Web开发中可能使用到的一系列工具 ([Fiddler插件开发指南](https://github.com/Ke1992/Fiddler-Plug-Example))
-# 版本
+FPlug is a Fiddler plugin that provides a set of tools for web development ([Fiddler Plugin Development Guide](https://github.com/Ke1992/Fiddler-Plug-Example))
+# Version
 v1.0.4
-# 环境要求
-Fiddler版本要求4.6以上，推荐5.0版本以上<font color="#ff0000">（开发过程中是以Fiddler 5.0版本为基准）</font>，同时要求.NET Framework 4.6.1以上
-# 下载安装
-#### 1、Exe文件
-下载执行dist中的[FPlug.exe](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/dist/FPlug.exe)文件
-#### 2、手动安装
-下载dist中的两个dll文件，然后复制到Fiddler安装目录中的Scripts文件夹。
-# 特性
-* Host映射
-* 文件映射
-* Https 转 Http
-* Header 替换
-* 显示ServerIP
-* 禁止缓存
-* vConsole注入
-* Console日志
-* JS注入
-# 基础配置说明
-### 插件启用/关闭
-![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/switch.gif "插件启用/关闭")
-### 项目相关操作
-![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/item.gif "配置项目")
-### 规则相关操作
-![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/rule.gif "规则相关操作")
-# 特性功能说明
-### Host映射
-1、IP字段：填写映射机器的IP地址即可  
-2、端口字段：非必填，填写则替换为指定端口号，为空则使用请求本身的端口号  
-3、Url字段：  
-　　(1)、不局限于域名，以映射https://www.example.com/test/index.html为例  
-　　(2)、可以指定具体的Path，如：www.example.com/test  
-　　(3)、可以是URL的任意部分，如：com/test/i  
-　　(4)、支持正则表达式，如：\S*.example.com  
-4、示例：
-![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/host.gif "Host映射")
-### 文件映射
-1、Url字段：  
-　　(1)、不局限于域名，以映射https://www.example.com/test/index.html为例  
-　　(2)、可以指定具体的Path，如：www.example.com/test  
-　　(3)、可以是URL的任意部分，如：com/test/i  
-　　4)、支持正则表达式，如：\S*.example.com  
-2、文件路径字段：  
-　　(1)、仅支持正确的全路径（如果路径不正确将会有错误弹框！！！）  
-　　(2)、如果映射的URL中带有callback字段，则会自动替换文件里面第一个callback字符串  
-3、示例：
-![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/file.gif "文件映射")
-### Https 转 Http
-1、使用此配置必须开启Fiddler的HTTPS抓包功能  
-2、Url字段：  
-　　(1)、不局限于域名，以映射https://www.example.com/test/index.html为例  
-　　(2)、可以指定具体的Path，如：www.example.com/test  
-　　(3)、可以是URL的任意部分，如：com/test/i  
-　　(4)、支持正则表达式，如：\S*.example.com  
-3、示例：
-![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/https.gif "Https 转 Http")
-### Header替换
-1、允许替换Request或者Response的头部字段   
-2、Url字段：  
-　　(1)、不局限于域名，以映射https://www.example.com/test/index.html为例  
-　　(2)、可以指定具体的Path，如：www.example.com/test  
-　　(3)、可以是URL的任意部分，如：com/test/i  
-　　(4)、支持正则表达式，如：\S*.example.com  
-3、Key字段：必须符合 User-Agent 的格式   
-4、Request示例：
+# Environment
+Fiddler version requires 4.6 or higher, recommended version 5.0 or higher（FPlug is based on Fiddler 5.0）, Also requires .NET Framework 4.6.1 or higher
+# Install
+#### 1、Exe File
+Download the [FPlug.exe](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/dist/FPlug.exe) file in the dist folder
+#### 2、Custom Installation
+Download the dll file in the dist folder and copy it to the Scripts folder in the Fiddler installation directory
+# Features
+* Host Mapping
+* File Mapping
+* Https To Http
+* Header Replace
+* ServerIP
+* Disable Cache
+* vConsole
+* Console Log
+* JS Inject
+# Basic Configuration Explanation
+### Enable/Disable Plugin
+![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/switch.gif "Enable/Disable Plugin")
+### Project Related
+![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/item.gif "Project Related")
+### Rule Related
+![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/rule.gif "Rule Related")
+# Features Explanation
+### Host Mapping
+1、IP: Input the IP address  
+2、Port: Not necessary. If it is empty, use the port of the request itself  
+3、Url:  
+　　(1)、Not limited to domain name, use https://www.example.com/test/index.html as an example  
+　　(2)、Can use the full path, example: www.example.com/test  
+　　(3)、Can be any part of the url, example: com/test/i  
+　　(4)、Support for regular expressions, example: \S*.example.com  
+4、Example:
+![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/host.gif "Host Mapping")
+### File Mapping
+1、Url:  
+　　(1)、Not limited to domain name, use https://www.example.com/test/index.html as an example  
+　　(2)、Can use the full path, example: www.example.com/test  
+　　(3)、Can be any part of the url, example: com/test/i  
+　　(4)、Support for regular expressions, example: \S*.example.com  
+2、File Path:  
+　　(1)、Only correct full path is supported (If the path is incorrect, will be alert an error box！！！)  
+　　(2)、If the url has a callback parameter, it will automatically replace the first callback string in the file  
+3、Example:
+![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/file.gif "File Mapping")
+### Https To Http
+1、Fiddler's https packet capture must be enabled with this configuration  
+2、Url:  
+　　(1)、Not limited to domain name, use https://www.example.com/test/index.html as an example  
+　　(2)、Can use the full path, example: www.example.com/test  
+　　(3)、Can be any part of the url, example: com/test/i  
+　　(4)、Support for regular expressions, example: \S*.example.com  
+3、Example:
+![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/https.gif "Https To Http")
+### Header Replace
+1、Allow replace the header field of Request or Response   
+2、Url:  
+　　(1)、Not limited to domain name, use https://www.example.com/test/index.html as an example  
+　　(2)、Can use the full path, example: www.example.com/test  
+　　(3)、Can be any part of the url, example: com/test/i  
+　　(4)、Support for regular expressions, example: \S*.example.com  
+3、Key字段: Need to follow the format as User-Agent   
+4、Request Example:
 ![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/header_req.gif "Request Header")
-5、Response示例：
+5、Response Example:
 ![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/header_res.gif "Response Header")
-### 显示ServerIP
-1、开启后会自动在session面板中追加一列ServerIP，用来显示请求最终的IP地址  
-2、示例：  
+### ServerIP
+1、After opening, it will automatically add a column of ServerIP in the session panel to display the final IP address of the request  
+2、Example:  
 ![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/serverip.gif "ServerIP")
 ### 禁止缓存
-1、开启后会主动修改Request和Response头的相关字段，来禁止缓存生效  
-　　(1)、Request头：  
-　　　　a、删除Expires  
-　　　　b、删除If-None-Match  
-　　　　c、删除If-Modified-Since  
-　　　　d、强制修改Pragma为no-cache  
-　　　　e、强制修改Cache-Control为no-cache  
-　　(2)、Response头：  
-　　　　a、删除Expires  
-　　　　b、强制修改Pragma为no-cache  
-　　　　c、强制修改Cache-Control为no-cache  
-### vConsole注入
-1、开启后，会往Content-Type包含text/html，并且，包含&lt;html&gt;或者&lt;html 的请求中注入vConsole  
-2、示例：  
+1、After opening, it will automatically modify the related fields of the Request and Response headers to disable cache  
+　　(1)、Request:  
+　　　　a、Delete Expires  
+　　　　b、Delete If-None-Match  
+　　　　c、Delete If-Modified-Since  
+　　　　d、Modify Pragma to no-cache  
+　　　　e、Modify Cache-Control to no-cache  
+　　(2)、Response:  
+　　　　a、Delete Expires  
+　　　　b、Modify Pragma to no-cache  
+　　　　c、Modify Cache-Control to no-cache  
+### vConsole
+1、After opening, the vConsole script will be injected into the page   
+2、Only text/html is included for Content-Type, and requests starting with &lt;!DOCTYPE or &lt;!doctype are valid   
+3、Example:  
 ![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/vconsole.gif "vConsole")
-### Console日志
-1、开启后会增加日志面板，同时会主动往网页中注入JS脚本，修改console方法，捕获日志后发起POST请求  
-2、日志输出的顺序请以序号为准  
-3、开启后之前已经打开的页面需要刷新才能捕获日志  
-4、仅会往Content-Type包含text/html，并且，包含&lt;html&gt;或者&lt;html 的请求中注入脚本  
-5、示例：  
-![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/console.gif "Console日志")
-### JS注入
-1、开启后，在输入框中键入JavaScript脚本，然后点击发送，会主动向代理中的网页注入对应的脚本  
-2、开启后之前已经打开的页面需要刷新才能响应注入的脚本  
-3、仅对Content-Type包含text/html，并且，包含&lt;html&gt;或者&lt;html 的请求有效  
-4、会每隔2S请求一次www.example.com，请忽略！！！  
-5、示例：  
-![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/invade.gif "JS注入")
+### Console Log
+1、After opening, the log panel will be added. At the same time, the JS script will be injected into the page, the console method will be modified, and the post request will be initiated after the log is captured  
+2、The order of log output is subject to the serial number  
+3、The page that was opened before opening needs to be refreshed in order to capture logs  
+4、Only include text/html to the Content-Type, and inject the script into the request starting with &lt;!DOCTYPE or &lt;!doctype  
+5、Example:  
+![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/console.gif "Console Log")
+### JS Inject
+1、After opening, type the JavaScript script in the input box, and then click Send button, it will automatically inject the corresponding script into the webpage in the proxy  
+2、The page that was opened before opening needs to be refreshed in order to respond to the injected script  
+3、Only text/html is included for Content-Type, and requests starting with &lt;!DOCTYPE or &lt;!doctype are valid  
+4、Will request www.example.com every 2 seconds, please ignore！！！  
+5、Example:  
+![blockchain](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/invade.gif "JS Inject")
