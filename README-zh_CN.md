@@ -43,7 +43,7 @@ Fiddler版本要求4.6以上，推荐5.0版本以上（FPlug是以Fiddler 5.0版
 　　(1)、不局限于域名，以映射https://www.example.com/test/index.html为例  
 　　(2)、可以指定具体的Path，如：www.example.com/test  
 　　(3)、可以是URL的任意部分，如：com/test/i  
-　　4)、支持正则表达式，如：\S*.example.com  
+　　(4)、支持正则表达式，如：\S*.example.com  
 2、文件路径字段：  
 　　(1)、仅支持正确的全路径（如果路径不正确将会有错误弹框！！！）  
 　　(2)、如果映射的URL中带有callback字段，则会自动替换文件里面第一个callback字符串  
@@ -69,7 +69,7 @@ Fiddler版本要求4.6以上，推荐5.0版本以上（FPlug是以Fiddler 5.0版
 4、Request示例：
 ![Request Header](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/header_req.gif "Request Header")
 5、Response示例：
-![Response Heade](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/header_res.gif "Response Header")
+![Response Header](https://raw.githubusercontent.com/Ke1992/Fiddler-FPlug/master/guide/header_res.gif "Response Header")
 ### ServerIP
 1、开启后会自动在session面板中追加一列ServerIP，用来显示请求最终的IP地址  
 2、示例：  
